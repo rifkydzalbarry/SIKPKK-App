@@ -91,7 +91,7 @@
               <i class="fas fa-fw fa-people-carry"></i>
               List Keluarga
             </a>
-            <a class="collapse-item" href="<?= base_url() ?>kondisirumah">
+            <a class="collapse-item" href="<?= base_url() ?>kondisirumah/tambahKondisi">
               <i class="fas fa-fw fa-house-user"></i>
               Kondisi Rumah
             </a>

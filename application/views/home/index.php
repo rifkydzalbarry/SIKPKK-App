@@ -6,3 +6,4 @@
 
 </div>
 <!-- /.container-fluid -->
+</div>
