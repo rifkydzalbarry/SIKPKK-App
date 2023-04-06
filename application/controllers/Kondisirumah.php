@@ -19,23 +19,18 @@ class Kondisirumah extends CI_Controller
     $this->load->view('templates/footer');
   }
 
-  public function tambahKondisi()
+  public function tambah()
   {
     $data['judul'] = 'Form Tambah Data | SIKPKK';
     $data['keluarga'] = $this->Keluarga_model->getAllKeluarga();
 
-    $this->form_validation->set_rules('no_kk', 'Nomor Kartu Keluarga', 'required');
-    $this->form_validation->set_rules('nik', 'Nomor Induk Kependudukan', 'required');
-    $this->form_validation->set_rules('nama_lgkp', 'Nama Lengkap', 'required');
-    $this->form_validation->set_rules('tmp_lhr', 'Tempat Lahir', 'required');
-    if ($this->form_validation->run() == FALSE) {
-      $this->load->view('templates/header', $data);
-      $this->load->view('kondisirumah/form_tambah', $data);
-      $this->load->view('templates/footer');
-    } else {
-      $this->Keluarga_model->tambahDataKeluarga();
-      $this->session->set_flashdata('alert', 'Ditambah');
-      redirect('keluarga');
+    if ($this->input->post('submit')) {
+      $this->Kondisirumah_model->tambahDataKondisirumah();
+      $this->session->set_flashdata('flash', 'Ditambahkan.');
+      redirect('kondisirumah');
     }
+    $this->load->view('templates/header', $data);
+    $this->load->view('kondisirumah/form_tambah', $data);
+    $this->load->view('templates/footer');
   }
 }

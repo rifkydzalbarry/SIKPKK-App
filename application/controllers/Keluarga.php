@@ -7,6 +7,7 @@ class Keluarga extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Keluarga_model');
+    $this->load->model('Kondisirumah_model');
   }
   public function index()
   {
@@ -75,6 +76,7 @@ class Keluarga extends CI_Controller
   {
     $data['judul'] = 'Detail Keluarga | SIKPKK';
     $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
+    $data['kondisirumah'] = $this->Kondisirumah_model->kondisi()->result_array();
     $this->load->view('templates/header', $data);
     $this->load->view('keluarga/detail', $data);
     $this->load->view('templates/footer');
