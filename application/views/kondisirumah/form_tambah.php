@@ -186,7 +186,7 @@
           </div>
         </div>
         <div class="col-12 mt-3">
-          <a href="<?= base_url() ?>keluarga" class="btn btn-primary position-relative">Kembali</a>
+          <a href="<?= base_url() ?>kondisirumah" class="btn btn-primary position-relative">Kembali</a>
           <input type="submit" name="submit" class="btn btn-primary float-right" value="Tambah Data">
         </div>
       </div>

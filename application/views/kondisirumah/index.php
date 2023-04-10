@@ -10,7 +10,7 @@
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">
         DataTables Keluarga
-        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>keluarga/tambahKeluarga">
+        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>kondisirumah/tambah">
           <i class="fas fa-plus fa-sm fa-fw mr-2"></i>
           Tambah Data
         </a>
@@ -30,46 +30,32 @@
           <thead class="text-center">
             <tr>
               <th>No</th>
-              <th>No KK - Kepala Keluarga</th>
-              <th>Makanan Pokok</th>
-              <th>Jamban</th>
-              <th>Sumber Air</th>
-              <th>TPS</th>
-              <th>SPAL</th>
-              <th>Stiker P4k</th>
-              <th>Kriteria Rumah</th>
-              <th>Aktifitas UP2K</th>
-              <th>Aktifitas KUKPL</th>
+              <th>Nomor Kartu Keluarga</th>
+              <th>Nama Kepala Keluarga</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <?php $no = 1;
-            foreach ($kondisirumah as $krmh) : ?>
-              <tr>
-                <td><?= $no++; ?></td>
-                <td><?= $krmh['no_kk'] ?> - <?= $krmh['nama_lgkp'] ?></td>
-                <td><?= $krmh['mkn_pokok'] ?></td>
-                <td><?= $krmh['jamban'] ?></td>
-                <td><?= $krmh['sbr_air'] ?></td>
-                <td><?= $krmh['tps'] ?></td>
-                <td><?= $krmh['spal'] ?></td>
-                <td><?= $krmh['stiker_p4k'] ?></td>
-                <td><?= $krmh['krt_rmh'] ?></td>
-                <td><?= $krmh['akf_up2k'] ?></td>
-                <td><?= $krmh['akf_kukpl'] ?></td>
-                <td class="text-center">
-                  <a href="<?= base_url() ?>keluarga/ubahKeluarga/<?= $krmh['nik'] ?>" class="btn btn-warning btn-sm">
-                    <i class="fas fa-pencil-alt"></i>
-                  </a>
-                  <a href="<?= base_url() ?>keluarga/hapusKeluarga/<?= $krmh['nik'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">
-                    <i class="fas fa-trash"></i>
-                  </a>
-                  <a href="<?= base_url() ?>keluarga/detailKeluarga/<?= $krmh['no_kk'] ?>" class="btn btn-info btn-sm">
-                    <i class="fas fa-info-circle"></i>
-                  </a>
-                </td>
-              </tr>
+            foreach ($keluarga as $klg) : ?>
+              <?php if ($klg['hbkel'] == 'Kepala Keluarga') { ?>
+                <tr>
+                  <td><?= $no++ ?></td>
+                  <td><?= $klg['no_kk'] ?></td>
+                  <td><?= $klg['nama_lgkp'] ?></td>
+                  <td class="text-center">
+                    <a href="<?= base_url() ?>kondisirumah/ubah/<?= $klg['no_kk'] ?>" class="btn btn-warning btn-sm">
+                      <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <a href="<?= base_url() ?>kondisirumah/hapusKondisi/<?= $klg['no_kk'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                    <a href="<?= base_url() ?>kondisirumah/detailKondisi/<?= $klg['no_kk'] ?>" class="btn btn-info btn-sm">
+                      <i class="fas fa-info-circle"></i>
+                    </a>
+                  </td>
+                </tr>
+              <?php } ?>
             <?php endforeach; ?>
           </tbody>
         </table>

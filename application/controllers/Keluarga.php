@@ -76,7 +76,7 @@ class Keluarga extends CI_Controller
   {
     $data['judul'] = 'Detail Keluarga | SIKPKK';
     $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
-    $data['kondisirumah'] = $this->Kondisirumah_model->kondisi()->result_array();
+    $data['kondisirumah'] = $this->Kondisirumah_model->getKondisiByKK($id);
     $this->load->view('templates/header', $data);
     $this->load->view('keluarga/detail', $data);
     $this->load->view('templates/footer');

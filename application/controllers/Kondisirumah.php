@@ -13,7 +13,8 @@ class Kondisirumah extends CI_Controller
   public function index()
   {
     $data['judul'] = 'Kondisi Rumah | SIKPKK';
-    $data['kondisirumah'] = $this->Kondisirumah_model->kondisi()->result_array();
+    $data['keluarga'] = $this->Keluarga_model->getAllKeluarga();
+    $data['kondisirumah'] = $this->Kondisirumah_model->kondisi()->result();
     $this->load->view('templates/header', $data);
     $this->load->view('kondisirumah/index', $data);
     $this->load->view('templates/footer');
@@ -32,5 +33,38 @@ class Kondisirumah extends CI_Controller
     $this->load->view('templates/header', $data);
     $this->load->view('kondisirumah/form_tambah', $data);
     $this->load->view('templates/footer');
+  }
+
+  public function ubah($id)
+  {
+    $data['judul'] = 'Form Ubah Data | SIKPKK';
+    $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
+    $data['kondisirumah'] = $this->Kondisirumah_model->getKondisiByKK($id);
+
+    if ($this->input->post('submit')) {
+      $this->Kondisirumah_model->ubahDataKondisirumah($id);
+      $this->session->set_flashdata('flash', 'Diubah.');
+      redirect('kondisirumah');
+    }
+    $this->load->view('templates/header', $data);
+    $this->load->view('kondisirumah/form_ubah', $data);
+    $this->load->view('templates/footer');
+  }
+
+  public function detailKondisi($id)
+  {
+    $data['judul'] = 'Detail Kondisi Rumah | SIKPKK';
+    $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
+    $data['kondisirumah'] = $this->Kondisirumah_model->getKondisiByKK($id);
+    $this->load->view('templates/header', $data);
+    $this->load->view('kondisirumah/detail', $data);
+    $this->load->view('templates/footer');
+  }
+
+  public function hapusKondisi($id)
+  {
+    $this->Kondisirumah_model->hapusDataKondisi($id);
+    $this->session->set_flashdata('flash', 'Dihapus.');
+    redirect('kondisirumah');
   }
 }
