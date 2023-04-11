@@ -8,7 +8,12 @@
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Form Data Keluarga</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Form Data Keluarga
+        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>keluarga">
+          <i class="fas fa-arrow-left fa-sm fa-fw mr-2"></i>
+          Kembali
+        </a>
+        </h6>
       </div>
       <div class="card-body">
         <form action="" method="post" class="row g-3">
@@ -110,7 +115,7 @@
           </div>
 
           <div class="col-12">
-            <a href="<?= base_url() ?>keluarga/detailKeluarga/<?= $keluarga['no_kk'] ?>" class="btn btn-primary position-relative">Kembali</a>
+            <a href="<?= base_url() ?>keluarga/detailKeluarga/<?= $keluarga['no_kk'] ?>" class="btn btn-primary position-relative">Tambah Anggota Keluarga</a>
             <input type="submit" name="submit" class="btn btn-primary float-right" value="Ubah Data">
           </div>
         </form>

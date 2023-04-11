@@ -27,7 +27,7 @@ class Kondisirumah extends CI_Controller
 
     if ($this->input->post('submit')) {
       $this->Kondisirumah_model->tambahDataKondisirumah();
-      $this->session->set_flashdata('flash', 'Ditambahkan.');
+      $this->session->set_flashdata('alert', 'Ditambahkan.');
       redirect('kondisirumah');
     }
     $this->load->view('templates/header', $data);
@@ -43,7 +43,7 @@ class Kondisirumah extends CI_Controller
 
     if ($this->input->post('submit')) {
       $this->Kondisirumah_model->ubahDataKondisirumah($id);
-      $this->session->set_flashdata('flash', 'Diubah.');
+      $this->session->set_flashdata('alert', 'Diubah.');
       redirect('kondisirumah');
     }
     $this->load->view('templates/header', $data);
@@ -64,7 +64,7 @@ class Kondisirumah extends CI_Controller
   public function hapusKondisi($id)
   {
     $this->Kondisirumah_model->hapusDataKondisi($id);
-    $this->session->set_flashdata('flash', 'Dihapus.');
+    $this->session->set_flashdata('alert', 'Dihapus.');
     redirect('kondisirumah');
   }
 }
