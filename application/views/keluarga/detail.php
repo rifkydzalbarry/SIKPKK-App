@@ -2,14 +2,14 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Details Keluarga</h1>
+  <h1 class="h3 mb-2 text-gray-800">Details Anggota Keluarga</h1>
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">
-        DataTables Keluarga
-        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>keluarga">
+        DataTables Anggota Keluarga
+        <a class="btn btn-primary float-right btn-sm" href="javascript:history.go(-1)">
           <i class="fas fa-arrow-left fa-sm fa-fw mr-2"></i>
           Kembali
         </a>

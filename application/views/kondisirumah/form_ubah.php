@@ -7,6 +7,10 @@
     <div class="card shadow mb-4">
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Form Kondisi Rumah</h6>
+        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>kondisirumah">
+          <i class="fas fa-arrow-left fa-sm fa-fw mr-2"></i>
+          Kembali
+        </a>
       </div>
       <div class="card-body">
         <div class="row row-cols-1 row-cols-4">
@@ -183,19 +187,18 @@
                       </div>
                     </div>
                   </div>
+
               </div>
             </div>
           </div>
         </div>
         <div class="col-12 mt-3">
-          <a href="<?= base_url() ?>kondisirumah" class="btn btn-primary position-relative">Kembali</a>
           <input type="submit" name="submit" class="btn btn-primary float-right" value="Ubah Data">
         </div>
       <?php endforeach; ?>
       </div>
     </div>
   </form>
-
 </div>
 <!-- /.container-fluid -->
 
