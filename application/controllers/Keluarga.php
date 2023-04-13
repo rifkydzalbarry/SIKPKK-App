@@ -6,6 +6,7 @@ class Keluarga extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+    $this->load->library('form_validation');
     $this->load->model('Keluarga_model');
     $this->load->model('Kondisirumah_model');
   }
