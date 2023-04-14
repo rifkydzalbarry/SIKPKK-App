@@ -6,13 +6,15 @@ class Dasawisma extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('Dasawisma_model');
+    $this->load->model('Dasawisma_model', '', TRUE);
   }
   public function index()
   {
     $data['judul'] = 'Dasawisma | SIKPKK';
     $data['dasawisma'] = $this->Dasawisma_model->getAllDasawisma();
     $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
     $this->load->view('dasawisma/index', $data);
     $this->load->view('templates/footer');
   }
