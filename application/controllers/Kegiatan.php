@@ -6,13 +6,15 @@ class Kegiatan extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('Kegiatan_model');
+    $this->load->model('Kegiatan_model', '', TRUE);
   }
   public function index()
   {
     $data['judul'] = 'Kegiatan | SIKPKK';
     $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
     $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
     $this->load->view('kegiatan/index', $data);
     $this->load->view('templates/footer');
   }

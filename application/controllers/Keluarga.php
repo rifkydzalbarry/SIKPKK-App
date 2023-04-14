@@ -7,14 +7,16 @@ class Keluarga extends CI_Controller
   {
     parent::__construct();
     $this->load->library('form_validation');
-    $this->load->model('Keluarga_model');
-    $this->load->model('Kondisirumah_model');
+    $this->load->model('Keluarga_model', '', TRUE);
+    $this->load->model('Kondisirumah_model', '', TRUE);
   }
   public function index()
   {
     $data['judul'] = 'Keluarga | SIKPKK';
     $data['keluarga'] = $this->Keluarga_model->getAllKeluarga();
     $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
     $this->load->view('keluarga/index', $data);
     $this->load->view('templates/footer');
   }
@@ -34,6 +36,8 @@ class Keluarga extends CI_Controller
     $this->form_validation->set_rules('tmp_lhr', 'Tempat Lahir', 'required');
     if ($this->form_validation->run() == FALSE) {
       $this->load->view('templates/header', $data);
+      $this->load->view('templates/sidebar', $data);
+      $this->load->view('templates/topbar', $data);
       $this->load->view('keluarga/form_tambah', $data);
       $this->load->view('templates/footer');
     } else {
@@ -57,6 +61,8 @@ class Keluarga extends CI_Controller
     $this->form_validation->set_rules('tmp_lhr', 'Tempat Lahir', 'required');
     if ($this->form_validation->run() == FALSE) {
       $this->load->view('templates/header', $data);
+      $this->load->view('templates/sidebar', $data);
+      $this->load->view('templates/topbar', $data);
       $this->load->view('keluarga/form_ubah', $data);
       $this->load->view('templates/footer');
     } else {
@@ -79,6 +85,8 @@ class Keluarga extends CI_Controller
     $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
     $data['kondisirumah'] = $this->Kondisirumah_model->getKondisiByKK($id);
     $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
     $this->load->view('keluarga/detail', $data);
     $this->load->view('templates/footer');
   }
