@@ -16,9 +16,9 @@ class Kegiatan_model extends CI_Model
     $this->db->insert('tbl_kegiatan', $data);
   }
 
-  public function hapusDataKegiatan($id)
+  public function hapusDataKegiatan()
   {
-    $this->db->where('id_kegiatan', $id);
+    $this->db->where('id_kegiatan', $this->input->post('id'));
     $this->db->delete('tbl_kegiatan');
   }
 

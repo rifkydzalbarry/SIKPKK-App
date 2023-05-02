@@ -14,6 +14,7 @@ class Keluarga extends CI_Controller
   {
     $data['judul'] = 'Keluarga | SIKPKK';
     $data['keluarga'] = $this->Keluarga_model->getAllKeluarga();
+    $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
@@ -24,6 +25,7 @@ class Keluarga extends CI_Controller
   public function tambahKeluarga()
   {
     $data['judul'] = 'Form Tambah Data | SIKPKK';
+    $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['hbkel'] = ['Kepala Keluarga', 'Istri', 'Anak', 'Family Lain'];
     $data['jenis_kelamin'] = ['Laki-laki', 'Perempuan'];
     $data['pendidikan'] = ['Tidak Tamat SD', 'SD dan Sederajat', 'SMP dan Sederajat', 'SMA dan Sederajat', 'Diploma 1-3', 'S1 dan Sederajat', 'S2 dan Sederajat', 'S3 dan Sederajat'];
@@ -50,6 +52,7 @@ class Keluarga extends CI_Controller
   public function ubahKeluarga($id)
   {
     $data['judul'] = 'Form Ubah Data | SIKPKK';
+    $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->getKeluargaById($id);
     $data['hbkel'] = ['Kepala Keluarga', 'Istri', 'Anak', 'Family Lain'];
     $data['jenis_kelamin'] = ['Laki-laki', 'Perempuan'];
@@ -82,6 +85,7 @@ class Keluarga extends CI_Controller
   public function detailKeluarga($id)
   {
     $data['judul'] = 'Detail Keluarga | SIKPKK';
+    $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
     $data['kondisirumah'] = $this->Kondisirumah_model->getKondisiByKK($id);
     $this->load->view('templates/header', $data);

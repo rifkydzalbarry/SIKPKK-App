@@ -11,6 +11,7 @@ class Dasawisma extends CI_Controller
   public function index()
   {
     $data['judul'] = 'Dasawisma | SIKPKK';
+    $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['dasawisma'] = $this->Dasawisma_model->getAllDasawisma();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
