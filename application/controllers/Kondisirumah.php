@@ -13,6 +13,7 @@ class Kondisirumah extends CI_Controller
   public function index()
   {
     $data['judul'] = 'Kondisi Rumah | SIKPKK';
+    $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->getAllKeluarga();
     $data['kondisirumah'] = $this->Kondisirumah_model->kondisi()->result();
     $this->load->view('templates/header', $data);
@@ -25,6 +26,7 @@ class Kondisirumah extends CI_Controller
   public function tambah()
   {
     $data['judul'] = 'Form Tambah Data | SIKPKK';
+    $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->getAllKeluarga();
 
     if ($this->input->post('submit')) {
@@ -42,6 +44,7 @@ class Kondisirumah extends CI_Controller
   public function ubah($id)
   {
     $data['judul'] = 'Form Ubah Data | SIKPKK';
+    $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
     $data['kondisirumah'] = $this->Kondisirumah_model->getKondisiByKK($id);
 
@@ -60,6 +63,7 @@ class Kondisirumah extends CI_Controller
   public function detailKondisi($id)
   {
     $data['judul'] = 'Detail Kondisi Rumah | SIKPKK';
+    $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
     $data['kondisirumah'] = $this->Kondisirumah_model->getKondisiByKK($id);
     $this->load->view('templates/header', $data);

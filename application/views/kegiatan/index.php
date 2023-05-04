@@ -40,12 +40,12 @@
                 <td><?= $no++  ?></td>
                 <td><?= $kgt['nama_kegiatan']  ?></td>
                 <td class="text-center">
-                  <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $kgt['id_kegiatan'] ?>">
+                  <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $kgt['id_kegiatan'] ?>">
                     <i class="fas fa-pencil-alt"></i>
-                  </a>
-                  <a href="<?= base_url() ?>kegiatan/hapusKegiatan/<?= $kgt['id_kegiatan'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">
+                  </button>
+                  <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delModal<?= $kgt['id_kegiatan'] ?>">
                     <i class="fas fa-trash"></i>
-                  </a>
+                  </button>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -116,3 +116,29 @@ foreach ($kegiatan as $kgt) : $no++; ?>
     </div>
   </div>
 <?php endforeach; ?>
+
+
+<!-- Hapus Modal -->
+<?php foreach ($kegiatan as $kgt) ?>
+<div class="modal fade" id="delModal<?= $kgt['id_kegiatan'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <?= form_open_multipart('kegiatan/hapusKegiatan') ?>
+        <input type="hidden" name="id" value="<?= $kgt['id_kegiatan'] ?>">
+        <p>Apakah Yakin Akan Menghapus Data Ini?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Delete</button>
+      </div>
+      <?= form_close() ?>
+    </div>
+  </div>
+</div>
