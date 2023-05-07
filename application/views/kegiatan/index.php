@@ -41,11 +41,14 @@
                 <td><?= $kgt['nama_kegiatan']  ?></td>
                 <td class="text-center">
                   <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $kgt['id_kegiatan'] ?>">
-                    <i class="fas fa-pencil-alt"></i>
+                    <i class="fas fa-fw fa-pencil-alt"></i>
                   </button>
                   <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delModal<?= $kgt['id_kegiatan'] ?>">
-                    <i class="fas fa-trash"></i>
+                    <i class="fas fa-fw fa-trash"></i>
                   </button>
+                  <a href="<?= base_url() ?>kegiatan/pkk/<?= $kgt['id_kegiatan'] ?>" class="btn btn-primary btn-sm">
+                    <i class="fas fa-fw fa-user"></i>
+                  </a>
                 </td>
               </tr>
             <?php endforeach; ?>

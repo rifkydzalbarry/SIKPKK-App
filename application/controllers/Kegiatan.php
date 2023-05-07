@@ -43,11 +43,11 @@ class Kegiatan extends CI_Controller
   }
 
 
-  public function pkk()
+  public function pkk($id)
   {
     $data['judul'] = 'Input Data Kegiatan PKK | SIKPKK';
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
-    $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+    $data['kegiatan'] = $this->Kegiatan_model->getKegiatanById($id);
     $data['keluarga'] = $this->Keluarga_model->getAllKeluarga();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);

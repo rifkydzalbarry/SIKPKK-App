@@ -8,6 +8,11 @@ class Kegiatan_model extends CI_Model
     return $this->db->get('tbl_kegiatan')->result_array();
   }
 
+  public function getKegiatanById($id)
+  {
+    return $this->db->get_where('tbl_kegiatan', ['id_kegiatan' => $id])->row_array();
+  }
+
   public function tambahDataKegiatan()
   {
     $data = [
