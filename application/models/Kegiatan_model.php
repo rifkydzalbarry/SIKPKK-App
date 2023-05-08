@@ -35,4 +35,22 @@ class Kegiatan_model extends CI_Model
     $this->db->where('id_kegiatan', $this->input->post('id'));
     $this->db->update('tbl_kegiatan', $data);
   }
+
+  public function tambahDataKegiatanMember()
+  {
+    $data = [
+      "id_kegiatan" => $this->input->post('id_kegiatan', true),
+      "nik" => $this->input->post('nik', true),
+      "keterangan" => $this->input->post('keterangan', true)
+    ];
+    $this->db->insert('tbl_kgt_pkk', $data);
+  }
+
+  public function getMember()
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_keluarga');
+    $this->db->join('tbl_kgt_pkk', 'tbl_kgt_pkk.nik = tbl_keluarga.nik');
+    return $this->db->get();
+  }
 }
