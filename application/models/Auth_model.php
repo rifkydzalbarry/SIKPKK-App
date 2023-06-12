@@ -9,6 +9,7 @@ class Auth_model extends CI_Model
       'fullname' => htmlspecialchars($this->input->post('fullname', true)),
       'email' => htmlspecialchars($this->input->post('email', true)),
       'image' => 'default.jpg',
+      'address' => 'Bandung',
       'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
       'role_id' => 2,
       'is_active' => 1,
