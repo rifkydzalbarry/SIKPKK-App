@@ -42,7 +42,7 @@
   <li class="nav-item active">
     <a class="nav-link" href="<?= base_url() ?>kegiatan">
       <i class="fas fa-fw fa-people-carry"></i>
-      <span>Kegiatan PKK</span>
+      <span>Kegiatan</span>
     </a>
   </li>
 
@@ -58,6 +58,13 @@
     <a class="nav-link" href="<?= base_url() ?>kondisirumah">
       <i class="fas fa-fw fa-house-user"></i>
       <span>Kondisi Rumah</span>
+    </a>
+  </li>
+
+  <li class="nav-item active">
+    <a class="nav-link" href="<?= base_url() ?>kondisirumah">
+
+      <span>Kehamilan</span>
     </a>
   </li>
 

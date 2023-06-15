@@ -58,4 +58,21 @@ class Keluarga_model extends CI_Model
     $this->db->where('nik', $this->input->post('id'));
     $this->db->update('tbl_keluarga', $data);
   }
+
+  public function jumlahKeluarga()
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_keluarga');
+    $this->db->where('hbkel', 'Kepala Keluarga');
+
+    return $this->db->get()->num_rows();
+  }
+
+  public function jumlahPenduduk()
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_keluarga');
+
+    return $this->db->get()->num_rows();
+  }
 }

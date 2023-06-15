@@ -2,65 +2,117 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Tables Kegiatan</h1>
-  <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem ullam qui eius reiciendis laudantium vel fugiat! Magnam officia animi, natus quas voluptas distinctio voluptates assumenda et molestiae, dolores laboriosam eveniet nam voluptatem, corporis ea nesciunt? Quidem ea perspiciatis velit atque corporis dolorum, accusantium harum aspernatur reiciendis sed at perferendis quaerat.</p>
+  <h3 class="mb-2 text-gray-800">Tables Kegiatan</h3>
 
-  <!-- DataTales Example -->
-  <div class="card shadow mb-4">
-    <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">DataTables Kegiatan
-        <a class="btn btn-primary float-right btn-sm" href="#" data-toggle="modal" data-target="#addModal">
-          <i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
-          Tambah Data
-        </a>
-        <a class="btn btn-primary float-right btn-sm mr-1" href="#" data-toggle="modal" data-target="#addModalMember">
-          <i class="fas fa-fw fa-user-plus"></i>
-        </a>
-      </h6>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <?php if ($this->session->flashdata('alert')) : ?>
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data Kegiatan <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+  <?php if ($user['role_id'] == 1) { ?>
+    <div class="row nt-2">
+      <div class="col-6">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Form Kegiatan
+            </h6>
           </div>
-        <?php endif; ?>
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-          <thead>
-            <tr class="text-center">
-              <th>No</th>
-              <th>Nama Kegiatan</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php $no = 1;
-            foreach ($kegiatan as $kgt) : ?>
-              <tr>
-                <td><?= $no++  ?></td>
-                <td><?= $kgt['nama_kegiatan']  ?></td>
-                <td class="text-center">
-                  <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $kgt['id_kegiatan'] ?>">
-                    <i class="fas fa-fw fa-pencil-alt"></i>
+          <div class="card-body">
+            <form action="<?= base_url('kegiatan/tambahKegiatan') ?>" method="post">
+              <div class="form-group">
+                <label><strong>Kegiatan</strong></label>
+                <input type="text" name="nama_kegiatan" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="reset" class="btn btn-danger">Reset</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- DataTales Example -->
+      <div class="col-6">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data Kegiatan
+            </h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <?php if ($this->session->flashdata('alert')) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  Data Kegiatan <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                   </button>
-                  <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delModal<?= $kgt['id_kegiatan'] ?>">
-                    <i class="fas fa-fw fa-trash"></i>
-                  </button>
-                  <a href="<?= base_url() ?>kegiatan/pkk/?>" class="btn btn-primary btn-sm">
-                    <i class="fas fa-fw fa-user"></i>
-                  </a>
-                </td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+                </div>
+              <?php endif; ?>
+              <table class="table table-bordered" id="dataTable" cellspacing="0">
+                <thead>
+                  <tr class="text-center">
+                    <th>No</th>
+                    <th>Nama Kegiatan</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $no = 1;
+                  foreach ($kegiatan as $kgt) : ?>
+                    <tr>
+                      <td><?= $no++  ?></td>
+                      <td><?= $kgt['nama_kegiatan']  ?></td>
+                      <td class="text-center">
+                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $kgt['id_kegiatan'] ?>">
+                          <i class="fas fa-fw fa-pencil-alt"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delModal<?= $kgt['id_kegiatan'] ?>">
+                          <i class="fas fa-fw fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
+  <?php } else { ?>
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Data Kegiatan
+        </h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <?php if ($this->session->flashdata('alert')) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              Data Kegiatan <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <?php endif; ?>
+          <table class="table table-bordered" id="dataTable" cellspacing="0">
+            <thead>
+              <tr class="text-center">
+                <th>No</th>
+                <th>Nama Kegiatan</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $no = 1;
+              foreach ($kegiatan as $kgt) : ?>
+                <tr>
+                  <td><?= $no++  ?></td>
+                  <td><?= $kgt['nama_kegiatan']  ?></td>
+                  <td class="text-center">
+                    <a href="" class="btn btn-primary btn-sm"><i class="fas fa-user fa-sm fa-fw"></i></a>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
 </div>
 <!-- /.container-fluid -->
 
@@ -68,7 +120,7 @@
 <!-- End of Main Content -->
 
 <!-- Add Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -93,7 +145,7 @@
   </div>
 </div>
 
-<!-- Add Modal Member -->
+Add Modal Member
 <div class="modal fade" id="addModalMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -135,7 +187,7 @@
       <?= form_close() ?>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Edit Modal -->
 <?php $no = 0;

@@ -53,4 +53,11 @@ class Kegiatan_model extends CI_Model
     $this->db->join('tbl_kgt_pkk', 'tbl_kgt_pkk.nik = tbl_keluarga.nik');
     return $this->db->get();
   }
+
+  public function jumlahKegiatan()
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_kegiatan');
+    return $this->db->get()->num_rows();
+  }
 }

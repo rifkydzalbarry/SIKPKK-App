@@ -18,4 +18,13 @@ class Auth_model extends CI_Model
 
     $this->db->insert('tbl_user', $data);
   }
+
+  public function jumlahDasawisma()
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_user');
+    $this->db->where('role_id', 2);
+
+    return $this->db->get()->num_rows();
+  }
 }
