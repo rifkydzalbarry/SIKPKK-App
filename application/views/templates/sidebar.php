@@ -62,8 +62,8 @@
   </li>
 
   <li class="nav-item active">
-    <a class="nav-link" href="<?= base_url() ?>kondisirumah">
-
+    <a class="nav-link" href="<?= base_url() ?>kehamilan">
+      <i class="fas fa-fw fa-user"></i>
       <span>Kehamilan</span>
     </a>
   </li>
