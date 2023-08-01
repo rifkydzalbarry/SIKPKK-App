@@ -75,4 +75,13 @@ class Keluarga_model extends CI_Model
 
     return $this->db->get()->num_rows();
   }
+
+  public function jumlahHamil()
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_keluarga');
+    $this->db->where('kriteria', 'Hamil');
+
+    return $this->db->get()->num_rows();
+  }
 }

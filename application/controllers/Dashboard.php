@@ -17,6 +17,7 @@ class Dashboard extends CI_Controller
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->jumlahKeluarga();
     $data['penduduk'] = $this->Keluarga_model->jumlahPenduduk();
+    $data['kehamilan'] = $this->Keluarga_model->jumlahHamil();
     $data['dasawisma'] = $this->Auth_model->jumlahDasawisma();
     $data['kegiatan'] = $this->Kegiatan_model->jumlahKegiatan();
 

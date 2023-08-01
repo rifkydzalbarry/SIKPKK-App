@@ -9,7 +9,7 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">
-        DataTables Keluarga
+        DataTables Kehamilan
         <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>keluarga/tambahKeluarga">
           <i class="fas fa-plus fa-sm fa-fw mr-2"></i>
           Tambah Data
@@ -31,13 +31,14 @@
             <tr>
               <th>No</th>
               <th>Nomor Kartu Keluarga</th>
-              <th>Nama Kepala Keluarga</th>
+              <th>Nama Ibu</th>
+              <th>Status(Hamil, Melahirkan)</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <?php $no = 1;
-            foreach ($keluarga as $klg) : ?>
+            <!-- <?php $no = 1;
+                  foreach ($keluarga as $klg) : ?>
               <?php if ($klg['kriteria'] == 'Hamil') { ?>
                 <tr>
                   <td><?= $no++ ?></td>
@@ -56,7 +57,7 @@
                   </td>
                 </tr>
               <?php } ?>
-            <?php endforeach; ?>
+            <?php endforeach; ?> -->
           </tbody>
         </table>
       </div>
