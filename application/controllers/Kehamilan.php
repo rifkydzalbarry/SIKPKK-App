@@ -45,8 +45,8 @@ class Kehamilan extends CI_Controller
 
   function menampilkan_istri()
   {
-    $id = $_POST['nik'];
-    $s = "SELECT * FROM 'tbl_keluarga' WHERE id='$id'";
+    $nik = $_POST['nik'];
+    $s = "SELECT nama_lgkp as nama FROM tbl_keluarga WHERE nik='$nik'";
     $data = $this->db->query($s)->row_array();
     echo json_encode($data);
   }
@@ -56,37 +56,47 @@ class Kehamilan extends CI_Controller
     $data['judul'] = 'Form Ubah Data | SIKPKK';
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
-    $data['kondisirumah'] = $this->Kondisirumah_model->getKondisiByKK($id);
+    $data['kehamilan'] = $this->Kehamilan_model->getKehamilanById($id);
+    $data['status'] = ['Hamil', 'Melahirkan', 'Nifas'];
+
 
     if ($this->input->post('submit')) {
-      $this->Kondisirumah_model->ubahDataKondisirumah($id);
+      $this->Kehamilan_model->ubahDataKehamilan($id);
       $this->session->set_flashdata('alert', 'Diubah.');
-      redirect('kondisirumah');
+      redirect('kehamilan');
     }
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
-    $this->load->view('kondisirumah/form_ubah', $data);
+    $this->load->view('kehamilan/form_ubah', $data);
     $this->load->view('templates/footer');
   }
 
-  public function detailKondisi($id)
+  public function detailKehamilan($id)
   {
-    $data['judul'] = 'Detail Kondisi Rumah | SIKPKK';
+    $data['judul'] = 'Cek Kehamilan | SIKPKK';
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
-    $data['kondisirumah'] = $this->Kondisirumah_model->getKondisiByKK($id);
+    $data['kehamilan'] = $this->Kehamilan_model->getKehamilanById($id);
+    $data['hamil'] = $this->Kehamilan_model->kondisi()->result();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
-    $this->load->view('kondisirumah/detail', $data);
+    $this->load->view('kehamilan/detail', $data);
     $this->load->view('templates/footer');
   }
 
-  public function hapusKondisi($id)
+  public function hapusKehamilan($id)
   {
-    $this->Kondisirumah_model->hapusDataKondisi($id);
+    $this->Kehamilan_model->hapusDataKehamilan($id);
     $this->session->set_flashdata('alert', 'Dihapus.');
-    redirect('kondisirumah');
+    redirect('kehamilan');
+  }
+
+  public function tambahCekKehamilan()
+  {
+    $this->Kehamilan_model->tambahDataCekKehamilan();
+    $this->session->set_flashdata('alert', 'Ditambah');
+    redirect('kehamilan');
   }
 }

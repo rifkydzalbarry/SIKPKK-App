@@ -12,7 +12,13 @@
       </div>
       <div class="card-body">
         <form action="" method="post" class="row g-3">
-          <div class="form-group col-6">
+          <input type="hidden" name="id" value="<?= $kehamilan['id_ibu'] ?>">
+          <div class="form-group col-md-6">
+            <label for="nik"><strong>NIK - Nama Lengkap</strong></label>
+            <input type="text" class="form-control" name="nik" id="" value="<?= $kehamilan['nik'] ?> - <?= $kehamilan['nama_lgkp'] ?>" disabled>
+            <small id="emailHelp" class="form-text text-danger"><?= form_error('no_kk') ?></small>
+          </div>
+          <!-- <div class="form-group col-6">
             <label label for="hbkel"><strong>Nomor Induk Kependudukan</strong></label>
             <select name="nik" id="nik" onchange="detail_istri()" class="form-control">
               <option value="">--Pilih--</option>
@@ -21,17 +27,11 @@
               foreach ($list->result() as $t) :
               ?>
                 <?php if ($t->hbkel == 'Istri') { ?>
-                  <option value="<?= $t->nik ?>"><?= $t->nik ?> - <?= $t->nama_lgkp ?></option>
+                  <option value="<?= $t->nik ?>" selected><?= $t->nik ?> - <?= $t->nama_lgkp ?></option>
                 <?php } ?>
               <?php endforeach; ?>
             </select>
-          </div>
-
-          <div class="form-group col-md-6">
-            <label for="nama_lgkp"><strong>Nama Lengkap</strong></label>
-            <input type="text" class="form-control" name="nama_lgkp" id="nama_lgkp" value="<?= set_value('nama_lgkp') ?>">
-            <small id="emailHelp" class="form-text text-danger"><?= form_error('nama_lgkp') ?></small>
-          </div>
+          </div> -->
 
           <div class="form-group col-6">
             <label label for="status"><strong>Status</strong></label>
@@ -49,7 +49,7 @@
 
           <div class="col-12">
             <a href="<?= base_url() ?>kehamilan" class="btn btn-primary position-relative">Kembali</a>
-            <input type="submit" name="submit" class="btn btn-primary float-right" value="Tambah Data">
+            <input type="submit" name="submit" class="btn btn-primary float-right" value="Ubah Data">
           </div>
         </form>
       </div>

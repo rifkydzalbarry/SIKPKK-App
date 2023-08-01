@@ -6,8 +6,8 @@ class Kehamilan_model extends CI_Model
   public function kondisi()
   {
     $this->db->select('*');
-    $this->db->from('tbl_keluarga');
-    $this->db->join('tbl_ibu', 'tbl_ibu.no_kk = tbl_keluarga.no_kk');
+    $this->db->from('tbl_ibu');
+    $this->db->join('tbl_cek_kehamilan', 'tbl_cek_kehamilan.id_ibu = tbl_ibu.id_ibu');
     return $this->db->get();
   }
 
@@ -19,7 +19,8 @@ class Kehamilan_model extends CI_Model
   public function tambahDataKehamilan()
   {
     $data = array(
-      'no_kk' => $this->input->post('no_kk'),
+      'nik' => $this->input->post('nik'),
+      'nama_lgkp' => $this->input->post('nama_lgkp'),
       'status' => $this->input->post('status')
     );
     $this->db->insert('tbl_ibu', $data);
@@ -31,31 +32,34 @@ class Kehamilan_model extends CI_Model
     return $this->db->get_where('tbl_kondisirumah', ['no_kk' => $id])->result_array();
   }
 
-  public function getKondisiById($id)
+  public function getKehamilanById($id)
   {
-    return $this->db->get_where('tbl_kondisirumah', ['id_konrmh' => $id])->row_array();
+    return $this->db->get_where('tbl_ibu', ['id_ibu' => $id])->row_array();
   }
 
-  public function ubahDataKondisirumah($id)
+  public function ubahDataKehamilan($id)
   {
     $data = array(
-      'mkn_pokok' => $this->input->post('mkn_pokok'),
-      'jamban' => $this->input->post('jamban'),
-      'sbr_air' => $this->input->post('sbr_air'),
-      'tps' => $this->input->post('tps'),
-      'spal' => $this->input->post('spal'),
-      'stiker_p4k' => $this->input->post('stiker_p4k'),
-      'krt_rmh' => $this->input->post('krt_rmh'),
-      'akf_up2k' => $this->input->post('akf_up2k'),
-      'akf_kukpl' => $this->input->post('akf_kukpl')
+      'status' => $this->input->post('status')
     );
-    $this->db->where('no_kk', $id);
-    $this->db->update('tbl_kondisirumah', $data);
+    $this->db->where('id_ibu', $id);
+    $this->db->update('tbl_ibu', $data);
   }
 
-  public function hapusDataKondisi($id)
+  public function hapusDataKehamilan($id)
   {
-    $this->db->where('no_kk', $id);
-    $this->db->delete('tbl_kondisirumah');
+    $this->db->where('id_ibu', $id);
+    $this->db->delete('tbl_ibu');
+  }
+
+  public function tambahDataCekKehamilan()
+  {
+    $data = [
+      "tgl_cek" => $this->input->post('tgl_cek', true),
+      "bb" => $this->input->post('bb', true),
+      "tb" => $this->input->post('tb', true),
+      "kondisi" => $this->input->post('kondisi', true)
+    ];
+    $this->db->insert('tbl_cek_kehamilan', $data);
   }
 }
