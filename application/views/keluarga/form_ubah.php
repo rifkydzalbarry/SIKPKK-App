@@ -9,10 +9,10 @@
     <div class="card shadow mb-4">
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Form Data Keluarga
-        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>keluarga">
-          <i class="fas fa-arrow-left fa-sm fa-fw mr-2"></i>
-          Kembali
-        </a>
+          <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>keluarga">
+            <i class="fas fa-arrow-left fa-sm fa-fw mr-2"></i>
+            Kembali
+          </a>
         </h6>
       </div>
       <div class="card-body">

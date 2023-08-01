@@ -18,6 +18,13 @@
   <!-- Custom styles for this template-->
   <link href="<?= base_url('assets/') ?>css/sb-admin-2.min.css" rel="stylesheet">
 
+  <style>
+    .bg-login-image {
+      background-image: url("http://localhost/sikpkk-app/assets/img/finance_0bdk.svg");
+      background-repeat: no-repeat;
+      background-size: 80%;
+    }
+  </style>
 </head>
 
 <body class="bg-gradient-primary">

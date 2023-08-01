@@ -10,7 +10,7 @@
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">
         DataTables Kehamilan
-        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>keluarga/tambahKeluarga">
+        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>kehamilan/tambah">
           <i class="fas fa-plus fa-sm fa-fw mr-2"></i>
           Tambah Data
         </a>
@@ -20,7 +20,7 @@
       <div class="table-responsive">
         <?php if ($this->session->flashdata('alert')) : ?>
           <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data Keluarga <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
+            Data Kondisi Rumah <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -32,32 +32,31 @@
               <th>No</th>
               <th>Nomor Kartu Keluarga</th>
               <th>Nama Ibu</th>
-              <th>Status(Hamil, Melahirkan)</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <!-- <?php $no = 1;
-                  foreach ($keluarga as $klg) : ?>
-              <?php if ($klg['kriteria'] == 'Hamil') { ?>
-                <tr>
-                  <td><?= $no++ ?></td>
-                  <td><?= $klg['no_kk'] ?></td>
-                  <td><?= $klg['nama_lgkp'] ?></td>
-                  <td class="text-center">
-                    <a href="<?= base_url() ?>keluarga/ubahKeluarga/<?= $klg['nik'] ?>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title=EDIT>
-                      <i class="fas fa-pencil-alt"></i>
-                    </a>
-                    <a href="<?= base_url() ?>keluarga/hapusKeluarga/<?= $klg['nik'] ?>" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title=DELETE onclick="return confirm('Are you sure you want to delete this item?');">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                    <a href="<?= base_url() ?>keluarga/detailKeluarga/<?= $klg['no_kk'] ?>" class="btn btn-info btn-sm" data-bs-toggle="tooltip" title=DETAIL>
-                      <i class="fas fa-info-circle"></i>
-                    </a>
-                  </td>
-                </tr>
-              <?php } ?>
-            <?php endforeach; ?> -->
+            <?php $no = 1;
+            foreach ($kehamilan as $hml) : ?>
+              <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $hml['no_kk'] ?></td>
+                <td><?= $hml['nama_ibu'] ?></td>
+                <td><?= $hml['status'] ?></td>
+                <td class="text-center">
+                  <a href="<?= base_url() ?>kehamilan/ubah/<?= $hml['id_ibu'] ?>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title=EDIT>
+                    <i class="fas fa-pencil-alt"></i>
+                  </a>
+                  <a href="<?= base_url() ?>kehamilan/hapusKondisi/<?= $hml['id_ibu'] ?>" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title=DELETE onclick="return confirm('Are you sure you want to delete this item?');">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                  <a href="<?= base_url() ?>kehamilan/detailKondisi/<?= $hml['id_ibu'] ?>" class="btn btn-info btn-sm" data-bs-toggle="tooltip" title=DETAIL>
+                    <i class="fas fa-info-circle"></i>
+                  </a>
+                </td>
+              </tr>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>

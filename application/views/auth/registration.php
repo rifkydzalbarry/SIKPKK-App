@@ -4,8 +4,8 @@
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-            <div class="col-lg-5 d-none d-lg-block m-auto">
-              <img src="<?= base_url('assets/img/programming.gif') ?>" alt="" width="450" height="400">
+            <div class="col-lg-5 d-none d-lg-block bg-login-image">
+              <!-- <img src="<?= base_url('assets/img/programming.gif') ?>" alt="" width="450" height="400"> -->
             </div>
             <div class="col-lg-7">
               <div class="p-5">
