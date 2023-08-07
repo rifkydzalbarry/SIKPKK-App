@@ -3,99 +3,110 @@
 
   <!-- Page Heading -->
   <h3 class="mb-2 text-gray-800">Tables Cek Kehamilan</h3>
+  <div class="row nt-2">
+    <div class="col-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Form Cek Kehamilan</h6>
+        </div>
+        <div class="card-body">
+          <form action="<?= base_url('kehamilan/tambahCekKehamilan') ?>" method="post">
+            <div class="form-group" hidden>
+              <input type="text" class="form-control" name="id_ibu" id="" value="<?= $kehamilan['id_ibu'] ?>" hidden>
+            </div>
+            <div class="form-group">
+              <label><strong>NIK - Nama Lengkap</strong></label>
+              <input type="text" name="" class="form-control" value="<?= $kehamilan['nik'] ?> - <?= $kehamilan['nama_lgkp'] ?>" placeholder="" disabled>
+              <!-- <label label for="hbkel"><strong>Nomor Induk Kependudukan</strong></label>
+                <select class="form-control" name="id_ibu" id="" disabled>
+                  <option hidden>--Pilih Data Keluarga--</option>
+                  <?php foreach ($kehamilan as $hml) : ?>
+                    <option value="<?= $hml['nik'] ?>" selected><?= $hml['nik'] ?> - <?= $hml['nama_lgkp'] ?></option>
+                  <?php endforeach; ?>
+                </select> -->
+            </div>
+            <div class="form-group">
+              <label for="tgl_cek"><strong>Tanggal Pemeriksaan</strong></label>
+              <input type="date" class="form-control" name="tgl_cek" id="" value="<?= set_value('tgl_cek') ?>">
+            </div>
+            <div class="form-group">
+              <label for="bb"><strong>Berat Badan</strong></label>
+              <input type="text" class="form-control" name="bb" id="" value="<?= set_value('bb') ?>">
+            </div>
 
-  <?php if ($user['role_id'] == 1) { ?>
-    <div class="row nt-2">
-      <div class="col-4">
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Form Cek Kehamilan
-            </h6>
-          </div>
-          <div class="card-body">
-            <form action="<?= base_url('kehamilan/tambahCekKehamilan') ?>" method="post">
-              <div class="form-group">
-                <label><strong>NIK - Nama Lengkap</strong></label>
-                <input type="text" name="nik" class="form-control" value="<?= $kehamilan['nik'] ?> - <?= $kehamilan['nama_lgkp'] ?>" disabled>
-              </div>
-              <div class="form-group">
-                <label for="tgl_cek"><strong>Tanggal Pemeriksaan</strong></label>
-                <input type="date" class="form-control" name="tgl_cek" id="" value="<?= set_value('tgl_cek') ?>">
-              </div>
-              <div class="form-group">
-                <label for="bb"><strong>Berat Badan</strong></label>
-                <input type="text" class="form-control" name="bb" id="" value="<?= set_value('bb') ?>">
-              </div>
-              <div class="form-group">
-                <label for="tb"><strong>Tinggi Badan</strong></label>
-                <input type="text" class="form-control" name="tb" id="" value="<?= set_value('tb') ?>">
-              </div>
-              <div class="form-group">
-                <label for="kondisi"><strong>Kondisi</strong></label>
-                <textarea class="form-control" name="kondisi" id="" cols="10" rows="5"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Save</button>
-              <button type="reset" class="btn btn-danger">Reset</button>
-            </form>
-          </div>
+            <div class="form-group">
+              <label for="tb"><strong>Tinggi Badan</strong></label>
+              <input type="text" class="form-control" name="tb" id="" value="<?= set_value('tb') ?>">
+            </div>
+            <div class="form-group">
+              <label for="kondisi"><strong>Kondisi</strong></label>
+              <textarea class="form-control" name="kondisi" id="" cols="5" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+          </form>
         </div>
       </div>
-      <!-- DataTales Example -->
-      <div class="col-8">
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Cek Kehamilan
-            </h6>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <?php if ($this->session->flashdata('alert')) : ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  Data Cek Kehamilan <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              <?php endif; ?>
-              <table class="table table-bordered" id="dataTable" cellspacing="0">
-                <thead>
-                  <tr class="text-center">
-                    <th>No</th>
-                    <th>Tanggal</th>
-                    <th>BB</th>
-                    <th>TB</th>
-                    <th>Kondisi</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php $no = 1;
-                  foreach ($hamil as $hml) : ?>
+    </div>
+    <!-- DataTales Example -->
+    <div class="col-8">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Data Cek Kehamilan
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <?php if ($this->session->flashdata('alert')) : ?>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Data Cek Kehamilan <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <?php endif; ?>
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
+              <thead>
+                <tr class="text-center">
+                  <th>No</th>
+                  <th>Tanggal</th>
+                  <th>BB</th>
+                  <th>TB</th>
+                  <th>Kondisi</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 1;
+                foreach ($hamil as $hml) : ?>
+                  <?php if ($hml['id_ibu'] == $kehamilan['id_ibu']) { ?>
                     <tr>
                       <td><?= $no++  ?></td>
                       <td><?= $hml['tgl_cek']  ?></td>
                       <td><?= $hml['bb']  ?></td>
-                      <td><?= $hml['tb']  ?></td>
+                      <td><?= $hml['tb'] ?></td>
                       <td><?= $hml['kondisi']  ?></td>
                       <td class="text-center">
-                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $hml['id_kegiatan'] ?>">
+                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $hml['id_cek'] ?>">
                           <i class="fas fa-fw fa-pencil-alt"></i>
                         </button>
-                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delModal<?= $kgt['id_kegiatan'] ?>">
+                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delModal<?= $hml['id_cek'] ?>">
                           <i class="fas fa-fw fa-trash"></i>
                         </button>
                       </td>
                     </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
-            </div>
+                  <?php } ?>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
-  <?php } else { ?>
-    <div class="card shadow mb-4">
+  </div>
+
+
+  <!-- <div class="card shadow mb-4">
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Data Kegiatan
         </h6>
@@ -133,8 +144,8 @@
           </table>
         </div>
       </div>
-    </div>
-  <?php } ?>
+    </div> -->
+
 </div>
 <!-- /.container-fluid -->
 
@@ -212,8 +223,8 @@ Add Modal Member
 </div> -->
 
 <!-- Edit Modal -->
-<?php $no = 0;
-foreach ($kegiatan as $kgt) : $no++; ?>
+<!-- <?php $no = 0;
+      foreach ($kegiatan as $kgt) : $no++; ?>
   <div class="modal fade" id="editModal<?= $kgt['id_kegiatan'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -239,11 +250,11 @@ foreach ($kegiatan as $kgt) : $no++; ?>
       </div>
     </div>
   </div>
-<?php endforeach; ?>
+<?php endforeach; ?> -->
 
 
 <!-- Hapus Modal -->
-<?php foreach ($kegiatan as $kgt) ?>
+<!-- <?php foreach ($kegiatan as $kgt) ?>
 <div class="modal fade" id="delModal<?= $kgt['id_kegiatan'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -265,4 +276,4 @@ foreach ($kegiatan as $kgt) : $no++; ?>
       <?= form_close() ?>
     </div>
   </div>
-</div>
+</div> -->

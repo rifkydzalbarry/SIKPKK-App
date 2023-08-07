@@ -8,7 +8,8 @@ class Kehamilan_model extends CI_Model
     $this->db->select('*');
     $this->db->from('tbl_ibu');
     $this->db->join('tbl_cek_kehamilan', 'tbl_cek_kehamilan.id_ibu = tbl_ibu.id_ibu');
-    return $this->db->get();
+    $query = $this->db->get();
+    return $query;
   }
 
   public function getAllKehamilan()
@@ -37,6 +38,11 @@ class Kehamilan_model extends CI_Model
     return $this->db->get_where('tbl_ibu', ['id_ibu' => $id])->row_array();
   }
 
+  public function getKehamilanByIdcek($id)
+  {
+    return $this->db->get_where('tbl_cek_kehamilan', ['id_cek' => $id])->row_array();
+  }
+
   public function ubahDataKehamilan($id)
   {
     $data = array(
@@ -55,6 +61,7 @@ class Kehamilan_model extends CI_Model
   public function tambahDataCekKehamilan()
   {
     $data = [
+      "id_ibu" => $this->input->post('id_ibu', true),
       "tgl_cek" => $this->input->post('tgl_cek', true),
       "bb" => $this->input->post('bb', true),
       "tb" => $this->input->post('tb', true),

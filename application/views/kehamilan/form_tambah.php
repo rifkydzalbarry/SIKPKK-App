@@ -13,7 +13,7 @@
       <div class="card-body">
         <form action="" method="post" class="row g-3">
           <div class="form-group col-6">
-            <label label for="hbkel"><strong>Nomor Induk Kependudukan</strong></label>
+            <label label for="hbkel"><strong>NIK - Nama Lengkap</strong></label>
             <select name="nik" id="nik" onchange="detail_istri()" class="form-control">
               <option value="">--Pilih--</option>
               <?php
@@ -27,7 +27,7 @@
             </select>
           </div>
 
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6" hidden>
             <label for="nama_lgkp"><strong>Nama Lengkap</strong></label>
             <input type="text" class="form-control" name="nama_lgkp" id="nama_lgkp" value="<?= set_value('nama_lgkp') ?>">
             <small id="emailHelp" class="form-text text-danger"><?= form_error('nama_lgkp') ?></small>

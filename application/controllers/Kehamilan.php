@@ -78,7 +78,9 @@ class Kehamilan extends CI_Controller
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
     $data['kehamilan'] = $this->Kehamilan_model->getKehamilanById($id);
-    $data['hamil'] = $this->Kehamilan_model->kondisi()->result();
+    $data['hamil'] = $this->Kehamilan_model->kondisi()->result_array();
+
+
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
@@ -95,6 +97,7 @@ class Kehamilan extends CI_Controller
 
   public function tambahCekKehamilan()
   {
+
     $this->Kehamilan_model->tambahDataCekKehamilan();
     $this->session->set_flashdata('alert', 'Ditambah');
     redirect('kehamilan');

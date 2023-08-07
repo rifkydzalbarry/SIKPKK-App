@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2023 at 01:25 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Waktu pembuatan: 04 Agu 2023 pada 11.04
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,33 +18,62 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sikpkk-app`
+-- Database: `sikpkk_app`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_dasawisma`
+-- Struktur dari tabel `tbl_cek_kehamilan`
 --
 
-CREATE TABLE `tbl_dasawisma` (
-  `id_dw` int(11) NOT NULL,
-  `nama_dw` varchar(25) NOT NULL,
-  `alamat` varchar(100) NOT NULL
+CREATE TABLE `tbl_cek_kehamilan` (
+  `id_cek` int(11) NOT NULL,
+  `id_ibu` int(11) NOT NULL,
+  `tgl_cek` date NOT NULL,
+  `bb` varchar(15) NOT NULL,
+  `tb` varchar(15) NOT NULL,
+  `kondisi` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_dasawisma`
+-- Dumping data untuk tabel `tbl_cek_kehamilan`
 --
 
-INSERT INTO `tbl_dasawisma` (`id_dw`, `nama_dw`, `alamat`) VALUES
-(1, 'Mawar', 'Jln Rambutan Rt.01/Rw.02 Ds. Nagrak Kec.Soreang Kab. Bandung'),
-(2, 'Edelweis', 'Soreang');
+INSERT INTO `tbl_cek_kehamilan` (`id_cek`, `id_ibu`, `tgl_cek`, `bb`, `tb`, `kondisi`) VALUES
+(1, 123, '2023-08-01', '70', '160', 'Sehat'),
+(2, 0, '2023-08-01', '50', '170', 'Sehat'),
+(3, 0, '2023-08-01', '78', '160', 'Sehat'),
+(4, 0, '2023-08-04', '14', '150', 'Bayi Udah bis ngomong');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_kegiatan`
+-- Struktur dari tabel `tbl_ibu`
+--
+
+CREATE TABLE `tbl_ibu` (
+  `id_ibu` int(11) NOT NULL,
+  `nik` int(11) NOT NULL,
+  `nama_lgkp` varchar(50) NOT NULL,
+  `status` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tbl_ibu`
+--
+
+INSERT INTO `tbl_ibu` (`id_ibu`, `nik`, `nama_lgkp`, `status`) VALUES
+(1, 123, 'Indah', 'Melahirkan'),
+(5, 2411, 'Megawati', 'Hamil'),
+(6, 12346, 'Siti', 'Melahirkan'),
+(7, 102, 'Indah Monica', 'Hamil'),
+(8, 11111, 'Indah', 'Hamil');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_kegiatan`
 --
 
 CREATE TABLE `tbl_kegiatan` (
@@ -53,17 +82,16 @@ CREATE TABLE `tbl_kegiatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_kegiatan`
+-- Dumping data untuk tabel `tbl_kegiatan`
 --
 
 INSERT INTO `tbl_kegiatan` (`id_kegiatan`, `nama_kegiatan`) VALUES
-(4, 'PHBN'),
-(5, 'Posyandu Balita dan Lansi');
+(1, 'Posyandu');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_keluarga`
+-- Struktur dari tabel `tbl_keluarga`
 --
 
 CREATE TABLE `tbl_keluarga` (
@@ -81,12 +109,12 @@ CREATE TABLE `tbl_keluarga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_keluarga`
+-- Dumping data untuk tabel `tbl_keluarga`
 --
 
 INSERT INTO `tbl_keluarga` (`no_kk`, `nik`, `nama_lgkp`, `hbkel`, `jk`, `tmp_lhr`, `tgl_lhr`, `pendidikan`, `pekerjaan`, `kriteria`, `keb_khs`) VALUES
 ('000', '00001', 'Agus Suherman', 'Kepala Keluarga', 'Laki-laki', 'Bandung', '2023-03-15', 'S1 dan Sederajat', 'Guru', 'PUS', 'None'),
-('000', '00002', 'Aisyah Sulaiman', 'Istri', 'Perempuan', 'Bandung', '2023-03-15', 'S3 dan Sederajat', 'Tidak Bekerja', 'WUS', ''),
+('000', '00002', 'Aisyah Sulaiman', 'Istri', 'Perempuan', 'Bandung', '2023-03-15', 'S3 dan Sederajat', 'Tidak Bekerja', 'Hamil', ''),
 ('000', '00003', 'Sayidah Suherman', 'Anak', 'Perempuan', 'Bandung', '2023-03-15', 'Tidak Tamat SD', 'Tidak Bekerja', 'Balita', ''),
 ('001', '00101', 'Dani Sudani', 'Kepala Keluarga', 'Laki-laki', 'Solo', '2023-03-17', 'S2 dan Sederajat', 'PNS', 'PUS', 'None'),
 ('001', '00102', 'Indah Monica', 'Istri', 'Perempuan', 'Bandung', '2023-03-17', 'S1 dan Sederajat', 'Perangkat Desa', 'WUS', 'None'),
@@ -97,6 +125,9 @@ INSERT INTO `tbl_keluarga` (`no_kk`, `nik`, `nama_lgkp`, `hbkel`, `jk`, `tmp_lhr
 ('004', '00401', 'Endang Sunandar', 'Kepala Keluarga', 'Laki-laki', 'Sidoarjo', '2023-03-17', 'SMP dan Sederajat', 'TKI', 'PUS', 'None'),
 ('004', '00402', 'Asriyani', 'Istri', 'Perempuan', 'Bandung', '2022-02-02', 'S1 dan Sederajat', 'Guru', 'WUS', 'None'),
 ('005', '00501', 'Dedi Cahyono', 'Kepala Keluarga', 'Laki-laki', 'Bandung', '2023-03-03', 'SD dan Sederajat', 'Buruh Tani', 'PUS', 'None'),
+('123', '11111', 'Indah', 'Istri', 'Perempuan', 'Bandung', '2023-05-10', 'SMA dan Sederajat', 'Buruh Tani', 'WUS', '-'),
+('123', '12345', 'Rifky Dzalbarry', 'Kepala Keluarga', 'Laki-laki', 'Bandung', '2023-05-10', 'S1 dan Sederajat', 'Guru/Dosen', 'PUS', '-'),
+('1789', '12346', 'Siti', 'Istri', 'Perempuan', 'Bandung', '2023-07-13', 'Tidak Tamat SD', 'Tidak Bekerja', 'Hamil', 'None'),
 ('006', '1665', 'Ragnarok', 'Kepala Keluarga', 'Laki-laki', 'Banten', '2023-03-19', 'SMA dan Sederajat', 'Polisi', 'PUS', 'None'),
 ('1789', '1789001', 'Atangg', 'Kepala Keluarga', 'Laki-laki', 'Bandung', '2023-04-03', 'Tidak Tamat SD', 'Petani', 'Lansia', 'Tidak Ada'),
 ('006', '2411', 'Megawati', 'Istri', 'Perempuan', 'Banten', '2023-03-20', 'SD dan Sederajat', 'Buruh Bangunan', 'WUS', 'Bengo');
@@ -104,7 +135,7 @@ INSERT INTO `tbl_keluarga` (`no_kk`, `nik`, `nama_lgkp`, `hbkel`, `jk`, `tmp_lhr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_kondisirumah`
+-- Struktur dari tabel `tbl_kondisirumah`
 --
 
 CREATE TABLE `tbl_kondisirumah` (
@@ -122,7 +153,7 @@ CREATE TABLE `tbl_kondisirumah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_kondisirumah`
+-- Dumping data untuk tabel `tbl_kondisirumah`
 --
 
 INSERT INTO `tbl_kondisirumah` (`id_konrmh`, `no_kk`, `mkn_pokok`, `jamban`, `sbr_air`, `tps`, `spal`, `stiker_p4k`, `krt_rmh`, `akf_up2k`, `akf_kukpl`) VALUES
@@ -131,57 +162,139 @@ INSERT INTO `tbl_kondisirumah` (`id_konrmh`, `no_kk`, `mkn_pokok`, `jamban`, `sb
 (4, '1665', 'Beras', 'Ya', 'Sumur', 'Ya', 'Tidak', 'Tidak', 'Kurang Sehat', 'Tidak', 'Ya'),
 (5, '00401', 'Non Beras', 'Ya', 'PDAM', 'Ya', 'Ya', 'Ya', 'Sehat', 'Ya', 'Ya'),
 (6, '000', 'Beras', 'Ya', 'PDAM', 'Ya', 'Ya', 'Ya', 'Sehat', 'Tidak', 'Tidak'),
-(7, '001', 'Non Beras', 'Tidak', 'Sumur', 'Tidak', 'Tidak', 'Tidak', 'Kurang Sehat', 'Tidak', 'Tidak');
+(7, '001', 'Beras', 'Tidak', 'Sumur', 'Tidak', 'Tidak', 'Tidak', 'Kurang Sehat', 'Tidak', 'Tidak'),
+(9, '123', 'Beras', 'Ya', 'PDAM', 'Ya', 'Tidak', 'Tidak', 'Sehat', 'Ya', 'Ya');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_user`
+--
+
+CREATE TABLE `tbl_user` (
+  `id` int(11) NOT NULL,
+  `fullname` varchar(128) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `image` varchar(128) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `is_active` int(1) NOT NULL,
+  `date_created` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`id`, `fullname`, `email`, `image`, `address`, `password`, `role_id`, `is_active`, `date_created`) VALUES
+(1, 'Rifky Dzalbarry', 'admin@admin.com', 'default.jpg', 'Bandung', '$2y$10$Y90IXEsqRBba5esSmFiwGuvPF.2rkX/G6ytZ2BLtDK5iY6d05paYC', 1, 1, 1681477692),
+(2, 'Moch Syahril Anas', 'syahril@gmail.com', 'default.jpg', 'Jln Penclut No. 666 Ds. Rancamanyar Kec. Baleendah Kab. Bandung', '$2y$10$yuIV9BrK5T6qMCczUWFNlubIYG9pZFcuuzuzD4md2SxXj4rkdNnT.', 2, 1, 1681478197);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_user_role`
+--
+
+CREATE TABLE `tbl_user_role` (
+  `id` int(11) NOT NULL,
+  `role` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tbl_user_role`
+--
+
+INSERT INTO `tbl_user_role` (`id`, `role`) VALUES
+(1, 'Administrator'),
+(2, 'Dasawisma');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbl_dasawisma`
+-- Indeks untuk tabel `tbl_cek_kehamilan`
 --
-ALTER TABLE `tbl_dasawisma`
-  ADD PRIMARY KEY (`id_dw`);
+ALTER TABLE `tbl_cek_kehamilan`
+  ADD PRIMARY KEY (`id_cek`);
 
 --
--- Indexes for table `tbl_kegiatan`
+-- Indeks untuk tabel `tbl_ibu`
+--
+ALTER TABLE `tbl_ibu`
+  ADD PRIMARY KEY (`id_ibu`);
+
+--
+-- Indeks untuk tabel `tbl_kegiatan`
 --
 ALTER TABLE `tbl_kegiatan`
   ADD PRIMARY KEY (`id_kegiatan`);
 
 --
--- Indexes for table `tbl_keluarga`
+-- Indeks untuk tabel `tbl_keluarga`
 --
 ALTER TABLE `tbl_keluarga`
   ADD PRIMARY KEY (`nik`);
 
 --
--- Indexes for table `tbl_kondisirumah`
+-- Indeks untuk tabel `tbl_kondisirumah`
 --
 ALTER TABLE `tbl_kondisirumah`
   ADD PRIMARY KEY (`id_konrmh`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indeks untuk tabel `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tbl_user_role`
+--
+ALTER TABLE `tbl_user_role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tbl_dasawisma`
+-- AUTO_INCREMENT untuk tabel `tbl_cek_kehamilan`
 --
-ALTER TABLE `tbl_dasawisma`
-  MODIFY `id_dw` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `tbl_cek_kehamilan`
+  MODIFY `id_cek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tbl_kegiatan`
+-- AUTO_INCREMENT untuk tabel `tbl_ibu`
+--
+ALTER TABLE `tbl_ibu`
+  MODIFY `id_ibu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_kegiatan`
 --
 ALTER TABLE `tbl_kegiatan`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tbl_kondisirumah`
+-- AUTO_INCREMENT untuk tabel `tbl_kondisirumah`
 --
 ALTER TABLE `tbl_kondisirumah`
-  MODIFY `id_konrmh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_konrmh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_user_role`
+--
+ALTER TABLE `tbl_user_role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
