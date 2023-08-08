@@ -32,9 +32,9 @@
 
   <?php if ($user['role_id'] == 1) { ?>
     <li class="nav-item active">
-      <a class="nav-link" href="<?= base_url() ?>dasawisma">
+      <a class="nav-link" href="<?= base_url() ?>users">
         <i class="fas fa-fw fa-hotel"></i>
-        <span>Dasawisma</span>
+        <span>Users</span>
       </a>
     </li>
   <?php } ?>

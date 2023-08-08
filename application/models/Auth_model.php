@@ -12,7 +12,7 @@ class Auth_model extends CI_Model
       'address' => 'Bandung',
       'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
       'role_id' => 2,
-      'is_active' => 1,
+      'is_active' => 0,
       'date_created' => time()
     ];
 
