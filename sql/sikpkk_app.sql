@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Agu 2023 pada 11.04
+-- Waktu pembuatan: 08 Agu 2023 pada 06.53
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 7.4.33
 
@@ -41,10 +41,8 @@ CREATE TABLE `tbl_cek_kehamilan` (
 --
 
 INSERT INTO `tbl_cek_kehamilan` (`id_cek`, `id_ibu`, `tgl_cek`, `bb`, `tb`, `kondisi`) VALUES
-(1, 123, '2023-08-01', '70', '160', 'Sehat'),
-(2, 0, '2023-08-01', '50', '170', 'Sehat'),
-(3, 0, '2023-08-01', '78', '160', 'Sehat'),
-(4, 0, '2023-08-04', '14', '150', 'Bayi Udah bis ngomong');
+(1, 1, '2023-08-07', '46', '170', 'Sehat'),
+(2, 1, '2023-08-08', '50', '170', 'Sehat');
 
 -- --------------------------------------------------------
 
@@ -64,11 +62,8 @@ CREATE TABLE `tbl_ibu` (
 --
 
 INSERT INTO `tbl_ibu` (`id_ibu`, `nik`, `nama_lgkp`, `status`) VALUES
-(1, 123, 'Indah', 'Melahirkan'),
-(5, 2411, 'Megawati', 'Hamil'),
-(6, 12346, 'Siti', 'Melahirkan'),
-(7, 102, 'Indah Monica', 'Hamil'),
-(8, 11111, 'Indah', 'Hamil');
+(1, 2, 'Aisyah Sulaiman', 'Hamil'),
+(2, 102, 'Indah Monica', 'Hamil');
 
 -- --------------------------------------------------------
 
@@ -77,16 +72,19 @@ INSERT INTO `tbl_ibu` (`id_ibu`, `nik`, `nama_lgkp`, `status`) VALUES
 --
 
 CREATE TABLE `tbl_kegiatan` (
+  `id_kgt` int(11) NOT NULL,
   `id_kegiatan` int(11) NOT NULL,
-  `nama_kegiatan` varchar(25) NOT NULL
+  `nik` int(11) NOT NULL,
+  `tgl_kegiatan` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tbl_kegiatan`
 --
 
-INSERT INTO `tbl_kegiatan` (`id_kegiatan`, `nama_kegiatan`) VALUES
-(1, 'Posyandu');
+INSERT INTO `tbl_kegiatan` (`id_kgt`, `id_kegiatan`, `nik`, `tgl_kegiatan`) VALUES
+(1, 1, 11111, '2023-08-08'),
+(2, 1, 12346, '2023-08-08');
 
 -- --------------------------------------------------------
 
@@ -168,6 +166,25 @@ INSERT INTO `tbl_kondisirumah` (`id_konrmh`, `no_kk`, `mkn_pokok`, `jamban`, `sb
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tbl_master_kegiatan`
+--
+
+CREATE TABLE `tbl_master_kegiatan` (
+  `id_kegiatan` int(11) NOT NULL,
+  `nama_kegiatan` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tbl_master_kegiatan`
+--
+
+INSERT INTO `tbl_master_kegiatan` (`id_kegiatan`, `nama_kegiatan`) VALUES
+(1, 'Posyandu'),
+(2, 'PHBN');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tbl_user`
 --
 
@@ -230,7 +247,7 @@ ALTER TABLE `tbl_ibu`
 -- Indeks untuk tabel `tbl_kegiatan`
 --
 ALTER TABLE `tbl_kegiatan`
-  ADD PRIMARY KEY (`id_kegiatan`);
+  ADD PRIMARY KEY (`id_kgt`);
 
 --
 -- Indeks untuk tabel `tbl_keluarga`
@@ -243,6 +260,12 @@ ALTER TABLE `tbl_keluarga`
 --
 ALTER TABLE `tbl_kondisirumah`
   ADD PRIMARY KEY (`id_konrmh`);
+
+--
+-- Indeks untuk tabel `tbl_master_kegiatan`
+--
+ALTER TABLE `tbl_master_kegiatan`
+  ADD PRIMARY KEY (`id_kegiatan`);
 
 --
 -- Indeks untuk tabel `tbl_user`
@@ -264,25 +287,31 @@ ALTER TABLE `tbl_user_role`
 -- AUTO_INCREMENT untuk tabel `tbl_cek_kehamilan`
 --
 ALTER TABLE `tbl_cek_kehamilan`
-  MODIFY `id_cek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_cek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_ibu`
 --
 ALTER TABLE `tbl_ibu`
-  MODIFY `id_ibu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_ibu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_kegiatan`
 --
 ALTER TABLE `tbl_kegiatan`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_kgt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_kondisirumah`
 --
 ALTER TABLE `tbl_kondisirumah`
   MODIFY `id_konrmh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_master_kegiatan`
+--
+ALTER TABLE `tbl_master_kegiatan`
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_user`
