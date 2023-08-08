@@ -44,25 +44,40 @@ class Kegiatan extends CI_Controller
   }
 
 
-  public function pkk()
+  // public function pkk()
+  // {
+  //   $data['judul'] = 'Member Kegiatan PKK | SIKPKK';
+  //   $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
+  //   $data['member'] = $this->Kegiatan_model->getMember()->result_array();
+  //   $data['keluarga'] = $this->Keluarga_model->getAllKeluarga();
+  //   $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+
+  //   $this->load->view('templates/header', $data);
+  //   $this->load->view('templates/sidebar', $data);
+  //   $this->load->view('templates/topbar', $data);
+  //   $this->load->view('kegiatan/activityPkk', $data);
+  //   $this->load->view('templates/footer');
+  // }
+
+  public function tambahMemberKgt()
+  {
+    $this->Kegiatan_model->tambahDataMemberKgt();
+    $this->session->set_flashdata('alert', 'Ditambah');
+    redirect('kegiatan');
+  }
+
+  public function memberKgt($id)
   {
     $data['judul'] = 'Member Kegiatan PKK | SIKPKK';
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['member'] = $this->Kegiatan_model->getMember()->result_array();
     $data['keluarga'] = $this->Keluarga_model->getAllKeluarga();
-    $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+    $data['kegiatan'] = $this->Kegiatan_model->getKegiatanById($id);
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
-    $this->load->view('kegiatan/activityPkk', $data);
+    $this->load->view('kegiatan/member_kgt', $data);
     $this->load->view('templates/footer');
-  }
-
-  public function tambahKegiatanMember()
-  {
-    $this->Kegiatan_model->tambahDataKegiatanMember();
-    $this->session->set_flashdata('alert', 'Ditambah');
-    redirect('kegiatan');
   }
 }

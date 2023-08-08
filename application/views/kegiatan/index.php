@@ -103,7 +103,9 @@
                   <td><?= $no++  ?></td>
                   <td><?= $kgt['nama_kegiatan']  ?></td>
                   <td class="text-center">
-                    <a href="" class="btn btn-primary btn-sm"><i class="fas fa-user fa-sm fa-fw"></i></a>
+                    <a href="<?= base_url() ?>kegiatan/memberKgt/<?= $kgt['id_kegiatan'] ?>" class="btn btn-info btn-sm" data-bs-toggle="tooltip" title=DETAIL>
+                      <i class="fas fa-info-circle"></i>
+                    </a>
                   </td>
                 </tr>
               <?php endforeach; ?>
