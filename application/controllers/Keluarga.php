@@ -30,7 +30,7 @@ class Keluarga extends CI_Controller
     $data['jenis_kelamin'] = ['Laki-laki', 'Perempuan'];
     $data['pendidikan'] = ['Tidak Tamat SD', 'SD dan Sederajat', 'SMP dan Sederajat', 'SMA dan Sederajat', 'Diploma 1-3', 'S1 dan Sederajat', 'S2 dan Sederajat', 'S3 dan Sederajat'];
     $data['pekerjaan'] = ['Tidak Bekerja', 'Petani', 'Buruh Tani', 'Buruh Bangunan', 'Nelayan', 'Guru/Dosen', 'Pedagang', 'Karyawan Swasta', 'TNI', 'Polisi', 'Lainnya'];
-    $data['kriteria'] = ['Balita', 'PUS', 'WUS', 'Buta', 'Hamil', 'Ibu Menyusui', 'Lansia'];
+    $data['kriteria'] = ['Balita', 'PUS', 'WUS', 'Buta', 'Lansia'];
 
     $this->form_validation->set_rules('no_kk', 'Nomor Kartu Keluarga', 'required');
     $this->form_validation->set_rules('nik', 'Nomor Induk Kependudukan', 'required');
@@ -58,7 +58,7 @@ class Keluarga extends CI_Controller
     $data['jenis_kelamin'] = ['Laki-laki', 'Perempuan'];
     $data['pendidikan'] = ['Tidak Tamat SD', 'SD dan Sederajat', 'SMP dan Sederajat', 'SMA dan Sederajat', 'Diploma 1-3', 'S1 dan Sederajat', 'S2 dan Sederajat', 'S3 dan Sederajat'];
     $data['pekerjaan'] = ['Tidak Bekerja', 'Petani', 'Buruh Tani', 'Buruh Bangunan', 'Nelayan', 'Guru/Dosen', 'Pedagang', 'Karyawan Swasta', 'TNI', 'Polisi', 'Lainnya'];
-    $data['kriteria'] = ['Balita', 'PUS', 'WUS', 'Buta', 'Hamil', 'Ibu Menyusui', 'Lansia'];
+    $data['kriteria'] = ['Balita', 'PUS', 'WUS', 'Buta', 'Lansia'];
 
     $this->form_validation->set_rules('nama_lgkp', 'Nama Lengkap', 'required');
     $this->form_validation->set_rules('tmp_lhr', 'Tempat Lahir', 'required');

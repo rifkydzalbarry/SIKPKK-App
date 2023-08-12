@@ -10,7 +10,7 @@
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">
         DataTables Kehamilan
-        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>kehamilan/tambah">
+        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>kehamilan/tambahKehamilan">
           <i class="fas fa-plus fa-sm fa-fw mr-2"></i>
           Tambah Data
         </a>
@@ -20,7 +20,7 @@
       <div class="table-responsive">
         <?php if ($this->session->flashdata('alert')) : ?>
           <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data Kondisi Rumah <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
+            Data Kehamilan <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -45,7 +45,7 @@
                 <td><?= $hml['nama_lgkp'] ?></td>
                 <td><?= $hml['status'] ?></td>
                 <td class="text-center">
-                  <a href="<?= base_url() ?>kehamilan/ubah/<?= $hml['id_ibu'] ?>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title=EDIT>
+                  <a href="<?= base_url() ?>kehamilan/ubahKehamilan/<?= $hml['id_ibu'] ?>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title=EDIT>
                     <i class="fas fa-pencil-alt"></i>
                   </a>
                   <a href="<?= base_url() ?>kehamilan/hapusKehamilan/<?= $hml['id_ibu'] ?>" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title=DELETE onclick="return confirm('Are you sure you want to delete this item?');">

@@ -10,7 +10,7 @@
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">
         DataTables Kondisi Keluarga
-        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>kondisirumah/tambah">
+        <a class="btn btn-primary float-right btn-sm" href="<?= base_url() ?>kondisirumah/tambahKondisi">
           <i class="fas fa-plus fa-sm fa-fw mr-2"></i>
           Tambah Data
         </a>
@@ -44,7 +44,7 @@
                   <td><?= $klg['no_kk'] ?></td>
                   <td><?= $klg['nama_lgkp'] ?></td>
                   <td class="text-center">
-                    <a href="<?= base_url() ?>kondisirumah/ubah/<?= $klg['no_kk'] ?>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title=EDIT>
+                    <a href="<?= base_url() ?>kondisirumah/ubahKondisi/<?= $klg['no_kk'] ?>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title=EDIT>
                       <i class="fas fa-pencil-alt"></i>
                     </a>
                     <a href="<?= base_url() ?>kondisirumah/hapusKondisi/<?= $klg['no_kk'] ?>" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title=DELETE onclick="return confirm('Are you sure you want to delete this item?');">

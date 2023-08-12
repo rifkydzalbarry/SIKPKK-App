@@ -67,12 +67,9 @@
                       <td><?= $mbr['nama_kgt']  ?></td>
                       <td><?= $mbr['nama_mbr']  ?></td>
                       <td class="text-center">
-                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $mbr['id_kgt'] ?>">
-                          <i class="fas fa-fw fa-pencil-alt"></i>
-                        </button>
-                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delModal<?= $mbr['id_kgt'] ?>">
-                          <i class="fas fa-fw fa-trash"></i>
-                        </button>
+                        <a href="<?= base_url() ?>kegiatan/hapusMemberKgt/<?= $mbr['id_kgt'] ?>" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title=DELETE onclick="return confirm('Are you sure you want to delete this item?');">
+                          <i class="fas fa-trash"></i>
+                        </a>
                       </td>
                     </tr>
                   <?php } ?>
@@ -85,4 +82,29 @@
     </div>
   </div>
 </div>
+</div>
+
+<!-- Hapus Modal -->
+<?php foreach ($member as $mbr) ?>
+<div class="modal fade" id="delModal<?= $mbr['id_kgt'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <?= form_open_multipart('kegiatan/hapusMemberKegiatan') ?>
+        <input type="hidden" name="id" value="<?= $mbr['id_kgt'] ?>">
+        <p>Apakah Yakin Akan Menghapus Data Ini?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Delete</button>
+      </div>
+      <?= form_close() ?>
+    </div>
+  </div>
 </div>

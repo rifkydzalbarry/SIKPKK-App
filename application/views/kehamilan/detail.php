@@ -10,7 +10,7 @@
           <h6 class="m-0 font-weight-bold text-primary">Form Cek Kehamilan</h6>
         </div>
         <div class="card-body">
-          <form action="<?= base_url('kehamilan/tambahCekKehamilan') ?>" method="post">
+          <form action="<?= base_url('cek_kehamilan/tambahCekKehamilan') ?>" method="post">
             <div class="form-group" hidden>
               <input type="text" class="form-control" name="id_ibu" id="" value="<?= $kehamilan['id_ibu'] ?>" hidden>
             </div>

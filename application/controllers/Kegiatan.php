@@ -9,6 +9,8 @@ class Kegiatan extends CI_Controller
     $this->load->model('Kegiatan_model', '', TRUE);
     $this->load->model('Keluarga_model', '', TRUE);
   }
+
+  // Function Kegiatan Master
   public function index()
   {
     $data['judul'] = 'Kegiatan | SIKPKK';
@@ -44,21 +46,7 @@ class Kegiatan extends CI_Controller
   }
 
 
-  // public function pkk()
-  // {
-  //   $data['judul'] = 'Member Kegiatan PKK | SIKPKK';
-  //   $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
-  //   $data['member'] = $this->Kegiatan_model->getMember()->result_array();
-  //   $data['keluarga'] = $this->Keluarga_model->getAllKeluarga();
-  //   $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
-
-  //   $this->load->view('templates/header', $data);
-  //   $this->load->view('templates/sidebar', $data);
-  //   $this->load->view('templates/topbar', $data);
-  //   $this->load->view('kegiatan/activityPkk', $data);
-  //   $this->load->view('templates/footer');
-  // }
-
+  // function Member Kegiatan
   public function tambahMemberKgt()
   {
     $this->Kegiatan_model->tambahDataMemberKgt();
@@ -79,5 +67,14 @@ class Kegiatan extends CI_Controller
     $this->load->view('templates/topbar', $data);
     $this->load->view('kegiatan/member_kgt', $data);
     $this->load->view('templates/footer');
+  }
+
+  // Edit Member
+  // Hapus Member
+  public function hapusMemberKgt($id)
+  {
+    $this->Kegiatan_model->hapusDataMemberKgt($id);
+    $this->session->set_flashdata('alert', 'Dihapus');
+    redirect('kegiatan');
   }
 }

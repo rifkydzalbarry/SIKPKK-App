@@ -22,4 +22,12 @@ class Cek_kehamilan extends CI_Controller
     $this->load->view('kondisirumah/index', $data);
     $this->load->view('templates/footer');
   }
+
+  public function tambahCekKehamilan()
+  {
+
+    $this->Kehamilan_model->tambahDataCekKehamilan();
+    $this->session->set_flashdata('alert', 'Ditambah');
+    redirect('kehamilan');
+  }
 }

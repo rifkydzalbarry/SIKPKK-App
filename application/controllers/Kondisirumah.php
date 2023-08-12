@@ -23,7 +23,7 @@ class Kondisirumah extends CI_Controller
     $this->load->view('templates/footer');
   }
 
-  public function tambah()
+  public function tambahKondisi()
   {
     $data['judul'] = 'Form Tambah Data | SIKPKK';
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
@@ -41,7 +41,7 @@ class Kondisirumah extends CI_Controller
     $this->load->view('templates/footer');
   }
 
-  public function ubah($id)
+  public function ubahKondisi($id)
   {
     $data['judul'] = 'Form Ubah Data | SIKPKK';
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();

@@ -79,7 +79,7 @@ class Keluarga_model extends CI_Model
   public function jumlahHamil()
   {
     $this->db->select('*');
-    $this->db->from('tbl_ibu');
+    $this->db->from('tbl_kehamilan');
     $this->db->where('status', 'Hamil');
 
     return $this->db->get()->num_rows();

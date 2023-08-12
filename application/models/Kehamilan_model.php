@@ -6,15 +6,15 @@ class Kehamilan_model extends CI_Model
   public function kondisi()
   {
     $this->db->select('*');
-    $this->db->from('tbl_ibu');
-    $this->db->join('tbl_cek_kehamilan', 'tbl_cek_kehamilan.id_ibu = tbl_ibu.id_ibu');
+    $this->db->from('tbl_kehamilan');
+    $this->db->join('tbl_cek_kehamilan', 'tbl_cek_kehamilan.id_ibu = tbl_kehamilan.id_ibu');
     $query = $this->db->get();
     return $query;
   }
 
   public function getAllKehamilan()
   {
-    return $this->db->get('tbl_ibu')->result_array();
+    return $this->db->get('tbl_kehamilan')->result_array();
   }
 
   public function tambahDataKehamilan()
@@ -24,7 +24,7 @@ class Kehamilan_model extends CI_Model
       'nama_lgkp' => $this->input->post('nama_lgkp'),
       'status' => $this->input->post('status')
     );
-    $this->db->insert('tbl_ibu', $data);
+    $this->db->insert('tbl_kehamilan', $data);
   }
 
 
@@ -35,7 +35,7 @@ class Kehamilan_model extends CI_Model
 
   public function getKehamilanById($id)
   {
-    return $this->db->get_where('tbl_ibu', ['id_ibu' => $id])->row_array();
+    return $this->db->get_where('tbl_kehamilan', ['id_ibu' => $id])->row_array();
   }
 
   public function getKehamilanByIdcek($id)
@@ -49,13 +49,13 @@ class Kehamilan_model extends CI_Model
       'status' => $this->input->post('status')
     );
     $this->db->where('id_ibu', $id);
-    $this->db->update('tbl_ibu', $data);
+    $this->db->update('tbl_kehamilan', $data);
   }
 
   public function hapusDataKehamilan($id)
   {
     $this->db->where('id_ibu', $id);
-    $this->db->delete('tbl_ibu');
+    $this->db->delete('tbl_kehamilan');
   }
 
   public function tambahDataCekKehamilan()

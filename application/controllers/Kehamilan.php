@@ -24,7 +24,7 @@ class Kehamilan extends CI_Controller
   }
 
 
-  public function tambah()
+  public function tambahKehamilan()
   {
     $data['judul'] = 'Form Tambah Data | SIKPKK';
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
@@ -51,7 +51,7 @@ class Kehamilan extends CI_Controller
     echo json_encode($data);
   }
 
-  public function ubah($id)
+  public function ubahKehamilan($id)
   {
     $data['judul'] = 'Form Ubah Data | SIKPKK';
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
@@ -92,14 +92,6 @@ class Kehamilan extends CI_Controller
   {
     $this->Kehamilan_model->hapusDataKehamilan($id);
     $this->session->set_flashdata('alert', 'Dihapus.');
-    redirect('kehamilan');
-  }
-
-  public function tambahCekKehamilan()
-  {
-
-    $this->Kehamilan_model->tambahDataCekKehamilan();
-    $this->session->set_flashdata('alert', 'Ditambah');
     redirect('kehamilan');
   }
 }

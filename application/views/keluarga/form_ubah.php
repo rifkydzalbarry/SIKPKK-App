@@ -115,7 +115,7 @@
           </div>
 
           <div class="col-12">
-            <a href="<?= base_url() ?>keluarga/detailKeluarga/<?= $keluarga['no_kk'] ?>" class="btn btn-primary position-relative">Tambah Anggota Keluarga</a>
+            <!-- <a href="<?= base_url() ?>keluarga/detailKeluarga/<?= $keluarga['no_kk'] ?>" class="btn btn-primary position-relative">Tambah Anggota Keluarga</a> -->
             <input type="submit" name="submit" class="btn btn-primary float-right" value="Ubah Data">
           </div>
         </form>
