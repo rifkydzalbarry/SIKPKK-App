@@ -14,4 +14,6 @@ class Profile extends CI_Controller
     $this->load->view('profile/index', $data);
     $this->load->view('templates/footer');
   }
+}if ($this->session->userdata('email')) {
+  redirect('profile');
 }

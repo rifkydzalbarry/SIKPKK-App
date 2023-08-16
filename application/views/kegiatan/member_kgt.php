@@ -85,7 +85,7 @@
 </div>
 
 <!-- Hapus Modal -->
-<?php foreach ($member as $mbr) ?>
+<!-- <?php foreach ($member as $mbr) ?>
 <div class="modal fade" id="delModal<?= $mbr['id_kgt'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -107,4 +107,4 @@
       <?= form_close() ?>
     </div>
   </div>
-</div>
+</div> -->

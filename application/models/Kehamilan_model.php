@@ -69,4 +69,26 @@ class Kehamilan_model extends CI_Model
     ];
     $this->db->insert('tbl_cek_kehamilan', $data);
   }
+
+  // Function Melahirkan
+  public function getBayi()
+  {
+    $this->db->select('tbl_bayi.*, tbl_kehamilan.nama_lgkp as nama_ibu');
+    $this->db->from('tbl_bayi');
+    $this->db->join('tbl_kehamilan', 'tbl_kehamilan.id_ibu = tbl_bayi.id_ibu');
+    $query = $this->db->get();
+    return $query;
+  }
+
+  public function tambahDataBayi()
+  {
+    $data = [
+      "id_ibu" => $this->input->post('id_ibu', true),
+      "nama_bayi" => $this->input->post('nama_bayi', true),
+      "tgl_lahir" => $this->input->post('tgl_lahir', true),
+      "jk" => $this->input->post('jk', true),
+      "akta" => $this->input->post('akta', true)
+    ];
+    $this->db->insert('tbl_bayi', $data);
+  }
 }

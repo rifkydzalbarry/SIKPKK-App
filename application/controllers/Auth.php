@@ -11,6 +11,9 @@ class Auth extends CI_Controller
   }
   public function index()
   {
+    if ($this->session->userdata('email')) {
+      redirect('profile');
+    }
     $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
     $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
@@ -61,6 +64,10 @@ class Auth extends CI_Controller
 
   public function registration()
   {
+    if ($this->session->userdata('email')) {
+      redirect('profile');
+    }
+
     $this->form_validation->set_rules('fullname', 'Fullname', 'required|trim');
     $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[tbl_user.email]', [
       'is_unique' => 'This email has already registered!'

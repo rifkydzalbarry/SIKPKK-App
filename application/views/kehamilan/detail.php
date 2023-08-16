@@ -2,108 +2,225 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h3 class="mb-2 text-gray-800">Tables Cek Kehamilan</h3>
-  <div class="row nt-2">
-    <div class="col-4">
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Form Cek Kehamilan</h6>
-        </div>
-        <div class="card-body">
-          <form action="<?= base_url('cek_kehamilan/tambahCekKehamilan') ?>" method="post">
-            <div class="form-group" hidden>
-              <input type="text" class="form-control" name="id_ibu" id="" value="<?= $kehamilan['id_ibu'] ?>" hidden>
-            </div>
-            <div class="form-group">
-              <label><strong>NIK - Nama Lengkap</strong></label>
-              <input type="text" name="" class="form-control" value="<?= $kehamilan['nik'] ?> - <?= $kehamilan['nama_lgkp'] ?>" placeholder="" disabled>
-              <!-- <label label for="hbkel"><strong>Nomor Induk Kependudukan</strong></label>
+  <?php if ($kehamilan['status'] == 'Hamil') { ?>
+    <h3 class="mb-2 text-gray-800">Tables Cek Kehamilan</h3>
+    <div class="row nt-2">
+      <div class="col-4">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Form Cek Kehamilan</h6>
+          </div>
+          <div class="card-body">
+            <form action="<?= base_url('kehamilan/tambahCekKehamilan') ?>" method="post">
+              <div class="form-group" hidden>
+                <input type="text" class="form-control" name="id_ibu" id="" value="<?= $kehamilan['id_ibu'] ?>" hidden>
+              </div>
+              <div class="form-group">
+                <label><strong>NIK - Nama Lengkap</strong></label>
+                <input type="text" name="" class="form-control" value="<?= $kehamilan['nik'] ?> - <?= $kehamilan['nama_lgkp'] ?>" placeholder="" disabled>
+                <!-- <label label for="hbkel"><strong>Nomor Induk Kependudukan</strong></label>
                 <select class="form-control" name="id_ibu" id="" disabled>
                   <option hidden>--Pilih Data Keluarga--</option>
                   <?php foreach ($kehamilan as $hml) : ?>
                     <option value="<?= $hml['nik'] ?>" selected><?= $hml['nik'] ?> - <?= $hml['nama_lgkp'] ?></option>
                   <?php endforeach; ?>
                 </select> -->
-            </div>
-            <div class="form-group">
-              <label for="tgl_cek"><strong>Tanggal Pemeriksaan</strong></label>
-              <input type="date" class="form-control" name="tgl_cek" id="" value="<?= set_value('tgl_cek') ?>">
-            </div>
-            <div class="form-group">
-              <label for="bb"><strong>Berat Badan</strong></label>
-              <input type="text" class="form-control" name="bb" id="" value="<?= set_value('bb') ?>">
-            </div>
+              </div>
+              <div class="form-group">
+                <label for="tgl_cek"><strong>Tanggal Pemeriksaan</strong></label>
+                <input type="date" class="form-control" name="tgl_cek" id="" value="<?= set_value('tgl_cek') ?>">
+              </div>
+              <div class="form-group">
+                <label for="bb"><strong>Berat Badan</strong></label>
+                <input type="text" class="form-control" name="bb" id="" value="<?= set_value('bb') ?>">
+              </div>
 
-            <div class="form-group">
-              <label for="tb"><strong>Tinggi Badan</strong></label>
-              <input type="text" class="form-control" name="tb" id="" value="<?= set_value('tb') ?>">
-            </div>
-            <div class="form-group">
-              <label for="kondisi"><strong>Kondisi</strong></label>
-              <textarea class="form-control" name="kondisi" id="" cols="5" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Save</button>
-            <button type="reset" class="btn btn-danger">Reset</button>
-          </form>
+              <div class="form-group">
+                <label for="tb"><strong>Tinggi Badan</strong></label>
+                <input type="text" class="form-control" name="tb" id="" value="<?= set_value('tb') ?>">
+              </div>
+              <div class="form-group">
+                <label for="kondisi"><strong>Kondisi</strong></label>
+                <textarea class="form-control" name="kondisi" id="" cols="5" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="reset" class="btn btn-danger">Reset</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- DataTales Example -->
-    <div class="col-8">
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Data Cek Kehamilan
-          </h6>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <?php if ($this->session->flashdata('alert')) : ?>
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Data Cek Kehamilan <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            <?php endif; ?>
-            <table class="table table-bordered" id="dataTable" cellspacing="0">
-              <thead>
-                <tr class="text-center">
-                  <th>No</th>
-                  <th>Tanggal</th>
-                  <th>BB</th>
-                  <th>TB</th>
-                  <th>Kondisi</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php $no = 1;
-                foreach ($hamil as $hml) : ?>
-                  <?php if ($hml['id_ibu'] == $kehamilan['id_ibu']) { ?>
-                    <tr>
-                      <td><?= $no++  ?></td>
-                      <td><?= $hml['tgl_cek']  ?></td>
-                      <td><?= $hml['bb']  ?></td>
-                      <td><?= $hml['tb'] ?></td>
-                      <td><?= $hml['kondisi']  ?></td>
-                      <td class="text-center">
-                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $hml['id_cek'] ?>">
-                          <i class="fas fa-fw fa-pencil-alt"></i>
-                        </button>
-                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delModal<?= $hml['id_cek'] ?>">
-                          <i class="fas fa-fw fa-trash"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  <?php } ?>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
+      <!-- DataTales Example -->
+      <div class="col-8">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data Cek Kehamilan
+            </h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <?php if ($this->session->flashdata('alert')) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  Data Cek Kehamilan <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              <?php endif; ?>
+              <table class="table table-bordered" id="dataTable" cellspacing="0">
+                <thead>
+                  <tr class="text-center">
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>BB</th>
+                    <th>TB</th>
+                    <th>Kondisi</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $no = 1;
+                  foreach ($hamil as $hml) : ?>
+                    <?php if ($hml['id_ibu'] == $kehamilan['id_ibu']) { ?>
+                      <tr>
+                        <td><?= $no++  ?></td>
+                        <td><?= $hml['tgl_cek']  ?></td>
+                        <td><?= $hml['bb']  ?></td>
+                        <td><?= $hml['tb'] ?></td>
+                        <td><?= $hml['kondisi']  ?></td>
+                        <td class="text-center">
+                          <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $hml['id_cek'] ?>">
+                            <i class="fas fa-fw fa-pencil-alt"></i>
+                          </button>
+                          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delModal<?= $hml['id_cek'] ?>">
+                            <i class="fas fa-fw fa-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    <?php } ?>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- View Status Melahirkan -->
+  <?php } else { ?>
+    <h3 class="mb-2 text-gray-800">Tables Kelahiran</h3>
+    <div class="row nt-2">
+      <div class="col-4">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Form Melahirkan</h6>
+          </div>
+          <div class="card-body">
+            <form action="<?= base_url('kehamilan/tambahBayi') ?>" method="post">
+              <div class="form-group" hidden>
+                <input type="text" class="form-control" name="id_ibu" id="" value="<?= $kehamilan['id_ibu'] ?>" hidden>
+              </div>
+              <div class="form-group">
+                <label><strong>Nama Ibu</strong></label>
+                <input type="text" name="" class="form-control" value="<?= $kehamilan['nik'] ?> - <?= $kehamilan['nama_lgkp'] ?>" placeholder="" disabled>
+                <!-- <label label for="hbkel"><strong>Nomor Induk Kependudukan</strong></label>
+                <select class="form-control" name="id_ibu" id="" disabled>
+                  <option hidden>--Pilih Data Keluarga--</option>
+                  <?php foreach ($kehamilan as $hml) : ?>
+                    <option value="<?= $hml['nik'] ?>" selected><?= $hml['nik'] ?> - <?= $hml['nama_lgkp'] ?></option>
+                  <?php endforeach; ?>
+                </select> -->
+              </div>
+              <div class="form-group">
+                <label for="nama_bayi"><strong>Nama Bayi</strong></label>
+                <input type="text" class="form-control" name="nama_bayi" id="" value="<?= set_value('nama_bayi') ?>">
+              </div>
+              <div class="form-group">
+                <label for="tgl_lahir"><strong>Tanggal Melahirkan</strong></label>
+                <input type="date" class="form-control" name="tgl_lahir" id="" value="<?= set_value('tgl_lahir') ?>">
+              </div>
+              <div class="form-group">
+                <label for="jk"><strong>Jenis Kelamin</strong></label>
+                <select class="form-control" name="jk" id="" value="<?= set_value('jk') ?>">
+                  <option hidden>--Pilih Jenis Kelamin--</option>
+                  <?php foreach ($jenis_kelamin as $jk) : ?>
+                    <?php if ($jk == $keluarga['jk']) : ?>
+                      <option value="<?= $jk ?>" selected><?= $jk ?></option>
+                    <?php else : ?>
+                      <option value="<?= $jk ?>"><?= $jk ?></option>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="akta"><strong>Akta</strong></label>
+                <input type="text" class="form-control" name="akta" id="" value="<?= set_value('akta') ?>">
+              </div>
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="reset" class="btn btn-danger">Reset</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- DataTales Example -->
+      <div class="col-8">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data Kelahiran
+            </h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <?php if ($this->session->flashdata('alert')) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  Data Cek Kehamilan <strong>Berhasil!</strong> <?= $this->session->flashdata('alert') ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              <?php endif; ?>
+              <table class="table table-bordered" id="dataTable" cellspacing="0">
+                <thead>
+                  <tr class="text-center">
+                    <th>No</th>
+                    <th>Nama Ibu</th>
+                    <th>Nama Bayi</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Akta</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $no = 1;
+                  foreach ($bayi as $b) : ?>
+                    <?php if ($b['id_ibu'] == $kehamilan['id_ibu']) { ?>
+                      <tr>
+                        <td><?= $no++  ?></td>
+                        <td><?= $b['nama_ibu']  ?></td>
+                        <td><?= $b['nama_bayi']  ?></td>
+                        <td><?= $b['jk']  ?></td>
+                        <td><?= $b['tgl_lahir']  ?></td>
+                        <td><?= $b['akta']  ?></td>
+                        <td class="text-center">
+                          <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?= $b['id_bayi'] ?>">
+                            <i class="fas fa-fw fa-pencil-alt"></i>
+                          </button>
+                          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delModal<?= $b['id_bayi'] ?>">
+                            <i class="fas fa-fw fa-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    <?php } ?>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
 
 
   <!-- <div class="card shadow mb-4">
