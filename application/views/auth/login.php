@@ -31,10 +31,10 @@
                     </button>
                     <hr>
                     <div class="text-center">
-                      <a class="small" href="<?= base_url() ?>auth/forgotPassword">Forgot Password?</a>
+                      <a class="small" href="<?= base_url() ?>auth/respass">Forgot Password?</a>
                     </div>
                     <div class="text-center">
-                      <a class="small" href="<?php base_url() ?>auth/registration">Create an Account!</a>
+                      <a class="small" href="<?= base_url() ?>auth/registration">Create an Account!</a>
                     </div>
                 </div>
               </div>

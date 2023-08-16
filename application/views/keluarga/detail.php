@@ -55,9 +55,13 @@
                 <td><?= $klg['pekerjaan'] ?></td>
                 <td><?= $klg['kriteria'] ?></td>
                 <td><?= $klg['keb_khs'] ?></td>
-                <td class="text-center">
-                  <a href="<?= base_url() ?>keluarga/ubahKeluarga/<?= $klg['nik'] ?>" class="btn btn-warning btn-sm">
+                <td class="text-center" style="width:10%;">
+                  <a href="<?= base_url() ?>keluarga/ubahKeluarga/<?= $klg['nik'] ?>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title=EDIT>
                     <i class="fas fa-pencil-alt"></i>
+                  </a>
+                  <a href="<?= base_url() ?>keluarga/hapusKeluarga/<?= $klg['nik'] ?>" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title=DELETE onclick="return confirm('Are you sure you want to delete this item?');">
+                    <i class="fas fa-trash"></i>
+                  </a>
                 </td>
               </tr>
             <?php endforeach; ?>

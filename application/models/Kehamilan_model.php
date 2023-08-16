@@ -70,6 +70,12 @@ class Kehamilan_model extends CI_Model
     $this->db->insert('tbl_cek_kehamilan', $data);
   }
 
+  public function hapusDataCekKehamilan($id)
+  {
+    $this->db->where('id_cek', $id);
+    $this->db->delete('tbl_cek_kehamilan');
+  }
+
   // Function Melahirkan
   public function getBayi()
   {
@@ -90,5 +96,23 @@ class Kehamilan_model extends CI_Model
       "akta" => $this->input->post('akta', true)
     ];
     $this->db->insert('tbl_bayi', $data);
+  }
+
+  public function hapusDataBayi($id)
+  {
+    $this->db->where('id_bayi', $id);
+    $this->db->delete('tbl_bayi');
+  }
+
+  public function ubahDataBayi()
+  {
+    $data = [
+      "nama_bayi" => $this->input->post('nama_bayi', true),
+      "tgl_lahir" => $this->input->post('tgl_lahir', true),
+      "jk" => $this->input->post('jk', true),
+      "akta" => $this->input->post('akta', true)
+    ];
+    $this->db->where('id_bayi', $this->input->post('id'));
+    $this->db->update('tbl_bayi', $data);
   }
 }

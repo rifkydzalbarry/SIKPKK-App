@@ -27,4 +27,32 @@ class Auth_model extends CI_Model
 
     return $this->db->get()->num_rows();
   }
+
+  public function getuserby($email)
+  {
+    $this->db->where('email', $email);
+    return $this->db->get('tbl_user')->row();
+  }
+
+  public function forgotpass($email)
+  {
+    $newpass = random_string('alnum', '10');
+    $this->db->set('password', $newpass);
+    $this->db->where('email', $email);
+    return $this->db->update('tbl_user');
+  }
+
+  public function encrypt($id)
+  {
+    $data = $this->read_by($id);
+    $this->db->where('id', $id);
+    $this->db->set('password', password_hash($data->password, PASSWORD_DEFAULT));
+    $this->db->update('tbl_user');
+  }
+  public function read_by($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->get('tbl_user');
+        return $query->row();
+    }
 }

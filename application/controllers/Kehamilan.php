@@ -57,7 +57,7 @@ class Kehamilan extends CI_Controller
     $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
     $data['keluarga'] = $this->Keluarga_model->getKeluargaByKK($id);
     $data['kehamilan'] = $this->Kehamilan_model->getKehamilanById($id);
-    $data['status'] = ['Hamil', 'Melahirkan', 'Nifas'];
+    $data['status'] = ['Hamil', 'Melahirkan'];
 
 
     if ($this->input->post('submit')) {
@@ -88,6 +88,7 @@ class Kehamilan extends CI_Controller
     $data['hamil'] = $this->Kehamilan_model->kondisi()->result_array();
     $data['bayi'] = $this->Kehamilan_model->getBayi()->result_array();
     $data['jenis_kelamin'] = ['Laki-laki', 'Perempuan']; // data untuk di form lahir
+    $data['akta'] = ['Ada', 'Tidak']; // data untuk di form lahir
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
@@ -104,10 +105,30 @@ class Kehamilan extends CI_Controller
     redirect('kehamilan');
   }
 
+  public function hapusCekKehamilan($id)
+  {
+    $this->Kehamilan_model->hapusDataCekKehamilan($id);
+    $this->session->set_flashdata('alert', 'Dihapus.');
+    redirect('kehamilan');
+  }
+
+  //Melahirkan
   public function tambahBayi()
   {
     $this->Kehamilan_model->tambahDataBayi();
     $this->session->set_flashdata('alert', 'Ditambah');
+    redirect('kehamilan');
+  }
+  public function hapusBayi($id)
+  {
+    $this->Kehamilan_model->hapusDataBayi($id);
+    $this->session->set_flashdata('alert', 'Dihapus.');
+    redirect('kehamilan');
+  }
+  public function ubahBayi()
+  {
+    $this->Kehamilan_model->ubahDataBayi();
+    $this->session->set_flashdata('alert', 'Diubah');
     redirect('kehamilan');
   }
 }

@@ -46,27 +46,28 @@
     </a>
   </li>
 
+  <?php if ($user['role_id'] == 2) { ?>
+    <li class="nav-item active">
+      <a class="nav-link" href="<?= base_url() ?>keluarga">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Keluarga</span>
+      </a>
+    </li>
 
-  <li class="nav-item active">
-    <a class="nav-link" href="<?= base_url() ?>keluarga">
-      <i class="fas fa-fw fa-users"></i>
-      <span>Keluarga</span>
-    </a>
-  </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="<?= base_url() ?>kondisirumah">
+        <i class="fas fa-fw fa-house-user"></i>
+        <span>Kondisi Rumah</span>
+      </a>
+    </li>
 
-  <li class="nav-item active">
-    <a class="nav-link" href="<?= base_url() ?>kondisirumah">
-      <i class="fas fa-fw fa-house-user"></i>
-      <span>Kondisi Rumah</span>
-    </a>
-  </li>
-
-  <li class="nav-item active">
-    <a class="nav-link" href="<?= base_url() ?>kehamilan">
-      <i class="fas fa-fw fa-user"></i>
-      <span>Kehamilan</span>
-    </a>
-  </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="<?= base_url() ?>kehamilan">
+        <i class="fas fa-fw fa-user"></i>
+        <span>Kehamilan</span>
+      </a>
+    </li>
+  <?php } ?>
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">

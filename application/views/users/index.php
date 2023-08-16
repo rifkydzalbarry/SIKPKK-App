@@ -36,11 +36,7 @@
                 <td><?= $usr->fullname ?></td>
                 <td><?= $usr->address ?></td>
                 <td><?= $usr->email ?></td>
-
                 <td class="text-center" style="width:15%;">
-                  <a href="<?= site_url('users/edit/' . $usr->id) ?>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title=EDIT>
-                    <i class="fas fa-pencil-alt"></i>
-                  </a>
                   <a href="<?= site_url('users/delete/' . $usr->id) ?>" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title=DELETE onclick="return confirm('Are you sure you want to delete this item?');">
                     <i class="fas fa-trash"></i>
                   </a>
