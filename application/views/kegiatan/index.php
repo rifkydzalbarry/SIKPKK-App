@@ -1,9 +1,6 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-  <!-- Page Heading -->
-  <h3 class="mb-2 text-gray-800">Tables Kegiatan</h3>
-
   <?php if ($user['role_id'] == 1) { ?>
     <div class="row nt-2">
       <div class="col-6">
