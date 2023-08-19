@@ -174,7 +174,7 @@ class Auth extends CI_Controller
         }
       } else {
         $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
-                masukan NPM dengan benar!
+                masukan email dengan benar!
               </div>');
         redirect('auth/forgotpassword');
       }
