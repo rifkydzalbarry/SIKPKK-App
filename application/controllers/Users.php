@@ -183,7 +183,7 @@ class Users extends CI_Controller
 		$mail->addReplyTo('syahrilanas09@gmail.com', ''); //user email anda
 
 		$mail->Subject = 'Verifikasi Akun';
-		$mailContent = 'Akun Anda Telah Terverifikasi">Verifikasi</a>';
+		$mailContent = 'Akun Anda Telah Terverifikasi <br> Silahkan Login';
 
 		// Email subject
 		// $mail->Subject = 'test'; //subject email

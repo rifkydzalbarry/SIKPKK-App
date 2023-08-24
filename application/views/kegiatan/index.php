@@ -100,8 +100,8 @@
                   <td><?= $no++  ?></td>
                   <td><?= $kgt['nama_kegiatan']  ?></td>
                   <td class="text-center">
-                    <a href="<?= base_url() ?>kegiatan/memberKgt/<?= $kgt['id_kegiatan'] ?>" class="btn btn-info btn-sm" data-bs-toggle="tooltip" title=DETAIL>
-                      <i class="fas fa-info-circle"></i>
+                    <a href="<?= base_url() ?>kegiatan/memberKgt/<?= $kgt['id_kegiatan'] ?>" class="btn btn-info btn-sm" data-bs-toggle="tooltip" title=MEMBER>
+                      <i class="fas fa-user"></i>
                     </a>
                   </td>
                 </tr>
